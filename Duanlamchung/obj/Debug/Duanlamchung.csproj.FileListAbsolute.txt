@@ -1,0 +1,15 @@
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\bin\Debug\Duanlamchung.exe.config
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\bin\Debug\Duanlamchung.exe
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\bin\Debug\Duanlamchung.pdb
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csprojAssemblyReference.cache
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\MainWindow.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\App.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung_MarkupCompile.cache
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung_MarkupCompile.lref
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\MainWindow.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.g.resources
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.Properties.Resources.resources
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.GenerateResource.cache
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.CoreCompileInputs.cache
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.exe
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.pdb
