@@ -1,0 +1,89 @@
+﻿<Window x:Class="Duanlamchung.Đặt_phòng_của_tôi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Phòng Đã Đặt Của Tôi" 
+        Height="650" Width="1050" 
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F6FA">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,25">
+            <TextBlock Text="Phòng đã đặt của tôi" FontSize="32" FontWeight="Bold" Foreground="#2D3436"/>
+            <TextBlock Text="Xem lại lịch sử và quản lý các phòng bạn đã đặt tại khách sạn" 
+                       FontSize="14" Foreground="#636E72" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Background="White" CornerRadius="15">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.05" ShadowDepth="2"/>
+            </Border.Effect>
+
+            <Grid Margin="15">
+                <DataGrid x:Name="dgBookings" AutoGenerateColumns="False" CanUserAddRows="False"
+                          Background="Transparent" BorderThickness="0" GridLinesVisibility="None"
+                          RowHeight="50" FontSize="15" SelectionUnit="FullRow" IsReadOnly="True">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="#B2BEC3"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="Padding" Value="10,0,10,12"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="BorderBrush" Value="#F1F2F6"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã Đặt" Binding="{Binding ID}" Width="100"/>
+                        <DataGridTextColumn Header="Tên Phòng" Binding="{Binding RoomName}" Width="*"/>
+                        <DataGridTextColumn Header="Ngày Nhận" Binding="{Binding CheckIn}" Width="150"/>
+                        <DataGridTextColumn Header="Ngày Trả" Binding="{Binding CheckOut}" Width="150"/>
+
+                        <DataGridTemplateColumn Header="Trạng Thái" Width="160">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Padding="12,5" CornerRadius="8" HorizontalAlignment="Left" Background="#D1FAE5">
+                                        <TextBlock Text="Đã xác nhận" Foreground="#059669" FontSize="12" FontWeight="Bold"/>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Tổng Tiền" Binding="{Binding Price}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,25,0,0">
+            <Button Content="Hủy Đặt Phòng" Background="White" Foreground="#D63031" 
+                    Width="160" Height="45" FontWeight="Bold" BorderBrush="#D63031" BorderThickness="1" Margin="0,0,15,0" Cursor="Hand">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Content="Xem Chi Tiết &amp; In Bill" Background="#0984E3" Foreground="White" 
+                    Width="200" Height="45" FontWeight="Bold" BorderThickness="0" Cursor="Hand">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
