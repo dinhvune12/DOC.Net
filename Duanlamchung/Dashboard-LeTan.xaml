@@ -1,0 +1,140 @@
+﻿<Window x:Class="Duanlamchung.Dashboard_LeTan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Duanlamchung"
+        mc:Ignorable="d"
+        Title="Dashboard_LeTan" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Border Grid.Column="0" Background="#34495E">
+            <StackPanel Margin="15">
+
+                <TextBlock Text="HOTEL SYSTEM"
+                   Foreground="White"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0,0,0,25"/>
+
+                <Button Content="Dashboard"
+                Margin="0,5"
+                Height="40"/>
+
+                <Button Content="Room Map"
+                Margin="0,5"
+                Height="40"
+                Click="RoomMap_Click"/>
+
+                <Button Content="Booking"
+                Margin="0,5"
+                Height="40"
+                Click="Booking_Click"/>
+
+                <Button Content="Check-in / Check-out"
+                Margin="0,5"
+                Height="40"/>
+
+                <Button Content="Logout"
+                Margin="0,30,0,0"
+                Height="40"/>
+            </StackPanel>
+        </Border>
+
+
+        <Grid Grid.Column="1" Margin="20">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Receptionist Dashboard"
+                   FontSize="26"
+                   FontWeight="Bold"/>
+                <TextBlock Text="Hotel overview"
+                   Foreground="Gray"/>
+            </StackPanel>
+
+
+            <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,20">
+
+                <Border Background="White" Margin="10" Padding="15">
+                    <StackPanel>
+                        <TextBlock Text="Available Rooms"/>
+                        <TextBlock Text="12"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="Green"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="White" Margin="10" Padding="15">
+                    <StackPanel>
+                        <TextBlock Text="Occupied Rooms"/>
+                        <TextBlock Text="18"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="Red"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="White" Margin="10" Padding="15">
+                    <StackPanel>
+                        <TextBlock Text="Today Check-in"/>
+                        <TextBlock Text="7"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="Blue"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="White" Margin="10" Padding="15">
+                    <StackPanel>
+                        <TextBlock Text="Today Check-out"/>
+                        <TextBlock Text="5"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="Orange"/>
+                    </StackPanel>
+                </Border>
+
+            </UniformGrid>
+
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                Content="Open Room Map"
+                Height="60"
+                Margin="10"
+                Click="RoomMap_Click"/>
+
+                <Button Grid.Column="1"
+                Content="Create Booking"
+                Height="60"
+                Margin="10"
+                Click="Booking_Click"/>
+
+                <Button Grid.Column="2"
+                Content="Check-in / Check-out"
+                Height="60"
+                Margin="10"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

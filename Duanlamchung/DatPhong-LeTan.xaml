@@ -1,0 +1,165 @@
+﻿<Window x:Class="Duanlamchung.DatPhong_LeTan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Duanlamchung"
+        mc:Ignorable="d"
+        Title="DatPhong_LeTan" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="BOOKING MANAGEMENT"
+                       FontSize="26"
+                       FontWeight="Bold"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="Role: Receptionist"
+                       Foreground="Gray"
+                       VerticalAlignment="Bottom"/>
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition Width="1.7*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <GroupBox Header="Customer Information"
+                      FontWeight="Bold"
+                      Margin="0,0,20,0">
+
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Full Name:"/>
+                    <TextBox Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Phone:" Grid.Row="1"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="ID / Passport:" Grid.Row="2"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Note:" Grid.Row="3"/>
+                    <TextBox Grid.Row="3"
+                             Grid.Column="1"
+                             Height="70"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Margin="5"/>
+                </Grid>
+            </GroupBox>
+
+
+            <GroupBox Grid.Column="1"
+                      Header="Booking Information"
+                      FontWeight="Bold">
+
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Room Type:"/>
+                    <ComboBox Grid.Column="1" Margin="5">
+                        <ComboBoxItem Content="Standard"/>
+                        <ComboBoxItem Content="Deluxe"/>
+                        <ComboBoxItem Content="VIP"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Room Number:" Grid.Row="1"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="5">
+                        <ComboBoxItem Content="101"/>
+                        <ComboBoxItem Content="102"/>
+                        <ComboBoxItem Content="201"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Check-in:" Grid.Row="2"/>
+                    <DatePicker Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Check-out:" Grid.Row="3"/>
+                    <DatePicker Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Status:" Grid.Row="4"/>
+                    <ComboBox Grid.Row="4" Grid.Column="1" Margin="5">
+                        <ComboBoxItem Content="Pending"/>
+                        <ComboBoxItem Content="Confirmed"/>
+                        <ComboBoxItem Content="Checked In"/>
+                        <ComboBoxItem Content="Cancelled"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Total Price:" Grid.Row="5"/>
+                    <TextBox Grid.Row="5"
+                             Grid.Column="1"
+                             Margin="5"
+                             IsReadOnly="True"
+                             Text="0"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+
+        <Border Grid.Row="2"
+            Background="#F5F5F5"
+            Padding="15"
+            Margin="0,20,0,0"
+            CornerRadius="10">
+
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+                <Button Content="Create"
+                    Width="100"
+                    Height="35"
+                    Margin="0,0,10,0"/>
+
+                <Button Content="Update"
+                    Width="100"
+                    Height="35"
+                    Margin="0,0,10,0"/>
+
+                <Button Content="Cancel Booking"
+                    Width="130"
+                    Height="35"
+                    Margin="0,0,10,0"/>
+
+                <Button Content="Confirm / Check-in"
+                    Width="160"
+                    Height="35"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>
