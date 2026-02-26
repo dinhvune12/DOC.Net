@@ -23,5 +23,9 @@ namespace Duanlamchung
         {
             InitializeComponent();
         }
+        private void btnTimPhong_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
