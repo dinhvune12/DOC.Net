@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Release\
 Duanlamchung
 none
 false
-DEBUG;TRACE
+TRACE
 C:\DOCNET\DOC.Net\Duanlamchung\App.xaml
 3-1880742896
 
@@ -16,5 +16,5 @@ C:\DOCNET\DOC.Net\Duanlamchung\App.xaml
 131569487696
 danhsachdatphong.xaml;MainWindow.xaml;quanlikhachhang.xaml;
 
-False
+True
 

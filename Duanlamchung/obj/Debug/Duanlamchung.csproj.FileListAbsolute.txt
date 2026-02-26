@@ -13,3 +13,22 @@ C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Dua
 C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.CoreCompileInputs.cache
 C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.exe
 C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.pdb
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csprojAssemblyReference.cache
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\danhsachdatphong.g.cs
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\MainWindow.g.cs
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\quanlikhachhang.g.cs
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\App.g.cs
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung_MarkupCompile.cache
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung_MarkupCompile.lref
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.exe
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.pdb
+C:\DOCNET\DOC.Net\Duanlamchung\bin\Debug\Duanlamchung.exe.config
+C:\DOCNET\DOC.Net\Duanlamchung\bin\Debug\Duanlamchung.exe
+C:\DOCNET\DOC.Net\Duanlamchung\bin\Debug\Duanlamchung.pdb
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\danhsachdatphong.baml
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\MainWindow.baml
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\quanlikhachhang.baml
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.g.resources
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.Properties.Resources.resources
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.GenerateResource.cache
+C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.CoreCompileInputs.cache

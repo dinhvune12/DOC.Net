@@ -23,5 +23,9 @@ namespace Duanlamchung
         {
             InitializeComponent();
         }
+        private void dgCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // xử lý ở đây
+        }
     }
 }
