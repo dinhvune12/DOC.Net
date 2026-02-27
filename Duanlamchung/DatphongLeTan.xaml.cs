@@ -43,6 +43,9 @@ namespace Duanlamchung
 
         }
 
-
+        private void DataChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO: code bạn muốn chạy khi đổi ngày
+        }
     }
 }

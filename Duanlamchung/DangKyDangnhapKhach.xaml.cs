@@ -30,5 +30,9 @@ namespace Duanlamchung
         private void BtnForgotPassword_Click(object sender, RoutedEventArgs e) { }
         private void BtnGuestContinue_Click(object sender, RoutedEventArgs e) { }
         private void BtnRegister_Click(object sender, RoutedEventArgs e) { }
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
     }
 }
