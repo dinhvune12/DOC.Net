@@ -55,13 +55,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DangKyDangnhapKhach.xaml.cs">
+      <DependentUpon>DangKyDangnhapKhach.xaml</DependentUpon>
+    </Compile>
     <Compile Include="danhsachdatphong.xaml.cs">
       <DependentUpon>danhsachdatphong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DatPhong.xaml.cs">
+      <DependentUpon>DatPhong.xaml</DependentUpon>
     </Compile>
     <Compile Include="quanlikhachhang.xaml.cs">
       <DependentUpon>quanlikhachhang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimPhong.xaml.cs">
+      <DependentUpon>TimPhong.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DangKyDangnhapKhach.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="danhsachdatphong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DatPhong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -78,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="quanlikhachhang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimPhong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
