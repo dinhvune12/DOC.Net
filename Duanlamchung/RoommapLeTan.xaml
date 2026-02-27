@@ -1,0 +1,148 @@
+﻿<Window x:Class="Duanlamchung.RoommapLeTan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Duanlamchung"
+        mc:Ignorable="d"
+        Title="RoommapLeTan" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="ROOM MAP"
+                FontSize="26"
+                FontWeight="Bold"
+                VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Column="1"
+                Text="Role: Receptionist"
+                Foreground="Gray"
+                VerticalAlignment="Bottom"/>
+        </Grid>
+
+
+        <ScrollViewer Grid.Row="1">
+            <UniformGrid Columns="4" Margin="10">
+
+                <!-- 101 -->
+                <Border x:Name="bd101" Background="#C8E6C9" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 101" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus101" Text="Available" Foreground="Green"/>
+                        <Button Content="Book" Tag="101" Margin="0,10,0,0" Click="BookRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 102 -->
+                <Border x:Name="bd102" Background="#FFCDD2" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 102" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus102" Text="Occupied" Foreground="Red"/>
+                        <Button Content="View" Tag="102" Margin="0,10,0,0" Click="ViewRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 103 -->
+                <Border x:Name="bd103" Background="#FFF9C4" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 103" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus103" Text="Cleaning" Foreground="Orange"/>
+                        <Button Content="Update Status" Tag="103" Margin="0,10,0,0" Click="UpdateRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 104 -->
+                <Border x:Name="bd104" Background="#E0E0E0" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 104" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus104" Text="Maintenance" Foreground="Gray"/>
+                        <Button Content="Details" Tag="104" Margin="0,10,0,0" Click="ViewRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 105 -->
+                <Border x:Name="bd105" Background="#C8E6C9" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 105" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus105" Text="Available" Foreground="Green"/>
+                        <Button Content="Book" Tag="105" Margin="0,10,0,0" Click="BookRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 106 -->
+                <Border x:Name="bd106" Background="#FFCDD2" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 106" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus106" Text="Occupied" Foreground="Red"/>
+                        <Button Content="View" Tag="106" Margin="0,10,0,0" Click="ViewRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 107 -->
+                <Border x:Name="bd107" Background="#FFF9C4" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 107" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus107" Text="Cleaning" Foreground="Orange"/>
+                        <Button Content="Update Status" Tag="107" Margin="0,10,0,0" Click="UpdateRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 108 -->
+                <Border x:Name="bd108" Background="#E0E0E0" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 108" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus108" Text="Maintenance" Foreground="Gray"/>
+                        <Button Content="Details" Tag="108" Margin="0,10,0,0" Click="ViewRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 109 -->
+                <Border x:Name="bd109" Background="#C8E6C9" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 109" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus109" Text="Available" Foreground="Green"/>
+                        <Button Content="Book" Tag="109" Margin="0,10,0,0" Click="BookRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 110 -->
+                <Border x:Name="bd110" Background="#FFCDD2" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 110" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus110" Text="Occupied" Foreground="Red"/>
+                        <Button Content="View" Tag="110" Margin="0,10,0,0" Click="ViewRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 111 -->
+                <Border x:Name="bd111" Background="#FFF9C4" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 111" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus111" Text="Cleaning" Foreground="Orange"/>
+                        <Button Content="Update Status" Tag="111" Margin="0,10,0,0" Click="UpdateRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 112 -->
+                <Border x:Name="bd112" Background="#E0E0E0" Margin="10" CornerRadius="8">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Room 112" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtStatus112" Text="Maintenance" Foreground="Gray"/>
+                        <Button Content="Details" Tag="112" Margin="0,10,0,0" Click="ViewRoom_Click"/>
+                    </StackPanel>
+                </Border>
+
+            </UniformGrid>
+        </ScrollViewer>
+    </Grid>
+</Window>

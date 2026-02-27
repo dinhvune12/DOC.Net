@@ -1,0 +1,202 @@
+﻿<Window x:Class="Duanlamchung.DatphongLeTan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DatphongLeTan"
+        Height="500"
+        Width="850">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Grid Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="BOOKING MANAGEMENT"
+                       FontSize="26"
+                       FontWeight="Bold"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="Role: Receptionist"
+                       Foreground="Gray"
+                       VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <!-- CONTENT -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition Width="1.7*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- CUSTOMER -->
+            <GroupBox Header="Customer Information"
+                      FontWeight="Bold"
+                      Margin="0,0,20,0">
+
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Full Name:"/>
+                    <TextBox x:Name="txtFullName"
+                             Grid.Column="1"
+                             Margin="5"/>
+
+                    <TextBlock Text="Phone:" Grid.Row="1"/>
+                    <TextBox x:Name="txtPhone"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="5"/>
+
+                    <TextBlock Text="ID / Passport:" Grid.Row="2"/>
+                    <TextBox x:Name="txtIDPassport"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             Margin="5"/>
+
+                    <TextBlock Text="Note:" Grid.Row="3"/>
+                    <TextBox x:Name="txtNote"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                             Height="70"
+                             AcceptsReturn="True"
+                             Margin="5"/>
+                </Grid>
+            </GroupBox>
+
+            <!-- BOOKING -->
+            <GroupBox Grid.Column="1"
+                      Header="Booking Information"
+                      FontWeight="Bold">
+
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Room Type:"/>
+                    <ComboBox x:Name="cbRoomType"
+                              Grid.Column="1"
+                              Margin="5"
+                              SelectionChanged="DataChanged">
+                        <ComboBoxItem Content="Standard"/>
+                        <ComboBoxItem Content="Deluxe"/>
+                        <ComboBoxItem Content="VIP"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Room Number:" Grid.Row="1"/>
+                    <ComboBox x:Name="cbRoomNumber"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              Margin="5">
+                        <ComboBoxItem Content="101"/>
+                        <ComboBoxItem Content="102"/>
+                        <ComboBoxItem Content="201"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Check-in:" Grid.Row="2"/>
+                    <DatePicker x:Name="dpCheckIn"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="5"
+                                SelectedDateChanged="DataChanged"/>
+
+                    <TextBlock Text="Check-out:" Grid.Row="3"/>
+                    <DatePicker x:Name="dpCheckOut"
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Margin="5"
+                                SelectedDateChanged="DataChanged"/>
+
+                    <TextBlock Text="Status:" Grid.Row="4"/>
+                    <ComboBox x:Name="cbStatus"
+                              Grid.Row="4"
+                              Grid.Column="1"
+                              Margin="5">
+                        <ComboBoxItem Content="Pending"/>
+                        <ComboBoxItem Content="Confirmed"/>
+                        <ComboBoxItem Content="Checked In"/>
+                        <ComboBoxItem Content="Cancelled"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Total Price:" Grid.Row="5"/>
+                    <TextBox x:Name="txtTotalPrice"
+                             Grid.Row="5"
+                             Grid.Column="1"
+                             Margin="5"
+                             IsReadOnly="True"
+                             Text="0"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <!-- BUTTONS -->
+        <Border Grid.Row="2"
+                Background="#F5F5F5"
+                Padding="15"
+                Margin="0,20,0,0"
+                CornerRadius="10">
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+                <Button x:Name="btnCreate"
+                        Content="Create"
+                        Width="100"
+                        Height="35"
+                        Margin="0,0,10,0"
+                        Click="btnCreate_Click"/>
+
+                <Button x:Name="btnUpdate"
+                        Content="Update"
+                        Width="100"
+                        Height="35"
+                        Margin="0,0,10,0"
+                        Click="btnUpdate_Click"/>
+
+                <Button x:Name="btnCancelBooking"
+                        Content="Cancel Booking"
+                        Width="130"
+                        Height="35"
+                        Margin="0,0,10,0"
+                        Click="btnCancelBooking_Click"/>
+
+                <Button x:Name="btnConfirmCheckIn"
+                        Content="Confirm / Check-in"
+                        Width="160"
+                        Height="35"
+                        Click="btnConfirmCheckIn_Click"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

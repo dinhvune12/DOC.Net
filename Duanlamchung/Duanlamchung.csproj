@@ -61,11 +61,20 @@
     <Compile Include="danhsachdatphong.xaml.cs">
       <DependentUpon>danhsachdatphong.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DashboardLeTan.xaml.cs">
+      <DependentUpon>DashboardLeTan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatPhong.xaml.cs">
       <DependentUpon>DatPhong.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DatphongLeTan.xaml.cs">
+      <DependentUpon>DatphongLeTan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="quanlikhachhang.xaml.cs">
       <DependentUpon>quanlikhachhang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RoommapLeTan.xaml.cs">
+      <DependentUpon>RoommapLeTan.xaml</DependentUpon>
     </Compile>
     <Compile Include="TimPhong.xaml.cs">
       <DependentUpon>TimPhong.xaml</DependentUpon>
@@ -78,7 +87,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DashboardLeTan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DatPhong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DatphongLeTan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,6 +112,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="quanlikhachhang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RoommapLeTan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
