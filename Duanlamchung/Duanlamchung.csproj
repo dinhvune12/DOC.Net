@@ -73,8 +73,17 @@
     <Compile Include="quanlikhachhang.xaml.cs">
       <DependentUpon>quanlikhachhang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Quanlydichvu.xaml.cs">
+      <DependentUpon>Quanlydichvu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Quanlytaikhoan.xaml.cs">
+      <DependentUpon>Quanlytaikhoan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RoommapLeTan.xaml.cs">
       <DependentUpon>RoommapLeTan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Thongtinphong.xaml.cs">
+      <DependentUpon>Thongtinphong.xaml</DependentUpon>
     </Compile>
     <Compile Include="TimPhong.xaml.cs">
       <DependentUpon>TimPhong.xaml</DependentUpon>
@@ -115,7 +124,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Quanlydichvu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Quanlytaikhoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RoommapLeTan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Thongtinphong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

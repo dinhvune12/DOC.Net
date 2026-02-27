@@ -1,0 +1,77 @@
+﻿<Window x:Class="Duanlamchung.Quanlytaikhoan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Duanlamchung"
+        mc:Ignorable="d"
+        Title="Quanlytaikhoan" Height="450" Width="800">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="QU?N L? TÀI KHO?N" 
+                   FontSize="22" FontWeight="Bold" Foreground="#2C3E50" 
+                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="White" CornerRadius="10" Padding="15" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Thông tin ngư?i dùng" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#34495E"/>
+                    <TextBlock Text="Tên đăng nh?p:"/>
+                    <TextBox x:Name="txtUsername" Margin="0,5,0,12" Padding="8"/>
+                    <TextBlock Text="M?t kh?u:"/>
+                    <PasswordBox x:Name="txtPassword" Margin="0,5,0,12" Padding="8"/>
+                    <TextBlock Text="H? và Tên:"/>
+                    <TextBox x:Name="txtFullName" Margin="0,5,0,12" Padding="8"/>
+                    <TextBlock Text="Quy?n h?n:"/>
+                    <ComboBox x:Name="cbRole" Margin="0,5,0,12" Padding="5" SelectedIndex="0">
+                        <ComboBoxItem Content="L? tân (Receptionist)"/>
+                        <ComboBoxItem Content="Qu?n l? (Manager)"/>
+                    </ComboBox>
+                    <CheckBox x:Name="chkIsActive" Content="Kích ho?t tài kho?n" IsChecked="True" Margin="0,5,0,20"/>
+                    <UniformGrid Columns="2" Margin="0,10,0,0">
+                        <Button Content="Thêm m?i" Background="#27AE60" Foreground="White" Margin="2" Padding="10"/>
+                        <Button Content="C?p nh?t" Background="#2980B9" Foreground="White" Margin="2" Padding="10"/>
+                    </UniformGrid>
+                    <Button Content="Vô hi?u hóa tài kho?n" Background="#E74C3C" Foreground="White" Margin="2,5" Padding="10"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Background="White" CornerRadius="10" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock Text="T?m ki?m:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBox x:Name="txtSearch" Padding="5"/>
+                    </DockPanel>
+                    <DataGrid Grid.Row="1" x:Name="dgAccounts" AutoGenerateColumns="False" 
+                              CanUserAddRows="False" SelectionMode="Single"
+                              BorderThickness="0" Background="Transparent">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên ĐN" Binding="{Binding Username}" Width="100"/>
+                            <DataGridTextColumn Header="H? Tên" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Quy?n" Binding="{Binding Role}" Width="120"/>
+                            <DataGridTemplateColumn Header="Tr?ng thái" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Status}" Foreground="{Binding StatusColor}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
