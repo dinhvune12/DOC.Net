@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\DOCNET\DOC.Net\Duanlamchung\obj\Debug\
+H:\CIDO\DOC.Net\Duanlamchung\obj\Debug\
 Duanlamchung
 none
 false
 DEBUG;TRACE
-C:\DOCNET\DOC.Net\Duanlamchung\App.xaml
-3-1880742896
+H:\CIDO\DOC.Net\Duanlamchung\App.xaml
+6250619894
 
-71339264204
-131569487696
-danhsachdatphong.xaml;MainWindow.xaml;quanlikhachhang.xaml;
+10-828821780
+13-1080843617
+DangKyDangnhapKhach.xaml;danhsachdatphong.xaml;DatPhong.xaml;MainWindow.xaml;quanlikhachhang.xaml;TimPhong.xaml;
 
-False
+True
 
