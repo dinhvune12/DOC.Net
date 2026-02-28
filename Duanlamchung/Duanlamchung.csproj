@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,8 +67,14 @@
     <Compile Include="BillPay.xaml.cs">
       <DependentUpon>BillPay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="booking.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
+    </Compile>
     <Compile Include="CheckInOut.xaml.cs">
       <DependentUpon>CheckInOut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customer.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
     </Compile>
     <Compile Include="DangKyDangnhapKhach.xaml.cs">
       <DependentUpon>DangKyDangnhapKhach.xaml</DependentUpon>
@@ -76,6 +91,27 @@
     <Compile Include="DatphongLeTan.xaml.cs">
       <DependentUpon>DatphongLeTan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBHotelManager.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBHotelManager.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBHotelManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBHotelManager.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBHotelManager.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="invoice.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="quanlikhachhang.xaml.cs">
       <DependentUpon>quanlikhachhang.xaml</DependentUpon>
     </Compile>
@@ -85,14 +121,30 @@
     <Compile Include="Quanlytaikhoan.xaml.cs">
       <DependentUpon>Quanlytaikhoan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="room.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
+    </Compile>
     <Compile Include="RoommapLeTan.xaml.cs">
       <DependentUpon>RoommapLeTan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="room_types.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="service.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="service_orders.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Session.cs" />
     <Compile Include="Thongtinphong.xaml.cs">
       <DependentUpon>Thongtinphong.xaml</DependentUpon>
     </Compile>
     <Compile Include="TimPhong.xaml.cs">
       <DependentUpon>TimPhong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>DBHotelManager.tt</DependentUpon>
     </Compile>
     <Page Include="BillPay.xaml">
       <SubType>Designer</SubType>
@@ -119,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DatphongLeTan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +233,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="DBHotelManager.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBHotelManager.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBHotelManager.edmx.diagram">
+      <DependentUpon>DBHotelManager.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -184,6 +248,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBHotelManager.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DBHotelManager.Context.cs</LastGenOutput>
+      <DependentUpon>DBHotelManager.edmx</DependentUpon>
+    </Content>
+    <Content Include="DBHotelManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBHotelManager.edmx</DependentUpon>
+      <LastGenOutput>DBHotelManager.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="booking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="room_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="check_in_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="check_out_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="customer" Relationship="Self.FK_bookings_customers" FromRole="bookings" ToRole="customers" />
+    <NavigationProperty Name="room" Relationship="Self.FK_bookings_rooms" FromRole="bookings" ToRole="rooms" />
+    <NavigationProperty Name="user" Relationship="Self.FK_bookings_users" FromRole="bookings" ToRole="users" />
+    <NavigationProperty Name="invoices" Relationship="Self.FK_invoices_bookings" FromRole="bookings" ToRole="invoices" />
+    <NavigationProperty Name="service_orders" Relationship="Self.FK_service_orders_bookings" FromRole="bookings" ToRole="service_orders" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="identity_card" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bookings" Relationship="Self.FK_bookings_customers" FromRole="customers" ToRole="bookings" />
+  </EntityType>
+  <EntityType Name="invoice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="booking_id" Type="Int32" Nullable="false" />
+    <Property Name="total_room_price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="total_service_price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="grand_total" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="payment_status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="booking" Relationship="Self.FK_invoices_bookings" FromRole="invoices" ToRole="bookings" />
+  </EntityType>
+  <EntityType Name="room_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price_per_night" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="capacity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="rooms" Relationship="Self.FK_rooms_room_types" FromRole="room_types" ToRole="rooms" />
+  </EntityType>
+  <EntityType Name="room">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="room_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="room_type_id" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bookings" Relationship="Self.FK_bookings_rooms" FromRole="rooms" ToRole="bookings" />
+    <NavigationProperty Name="room_types" Relationship="Self.FK_rooms_room_types" FromRole="rooms" ToRole="room_types" />
+  </EntityType>
+  <EntityType Name="service_orders">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="booking_id" Type="Int32" Nullable="false" />
+    <Property Name="service_id" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="order_time" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="booking" Relationship="Self.FK_service_orders_bookings" FromRole="service_orders" ToRole="bookings" />
+    <NavigationProperty Name="service" Relationship="Self.FK_service_orders_services" FromRole="service_orders" ToRole="services" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="service_orders" Relationship="Self.FK_service_orders_services" FromRole="services" ToRole="service_orders" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="full_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="bookings" Relationship="Self.FK_bookings_users" FromRole="users" ToRole="bookings" />
+  </EntityType>
+  <Association Name="FK_bookings_customers">
+    <End Role="customers" Type="Self.customer" Multiplicity="1" />
+    <End Role="bookings" Type="Self.booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bookings">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bookings_rooms">
+    <End Role="rooms" Type="Self.room" Multiplicity="1" />
+    <End Role="bookings" Type="Self.booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rooms">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bookings">
+        <PropertyRef Name="room_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bookings_users">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="bookings" Type="Self.booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bookings">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_invoices_bookings">
+    <End Role="bookings" Type="Self.booking" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="invoices" Type="Self.invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bookings">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="invoices">
+        <PropertyRef Name="booking_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_service_orders_bookings">
+    <End Role="bookings" Type="Self.booking" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service_orders" Type="Self.service_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bookings">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="service_orders">
+        <PropertyRef Name="booking_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rooms_room_types">
+    <End Role="room_types" Type="Self.room_types" Multiplicity="1" />
+    <End Role="rooms" Type="Self.room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="room_types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="rooms">
+        <PropertyRef Name="room_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_service_orders_services">
+    <End Role="services" Type="Self.service" Multiplicity="1" />
+    <End Role="service_orders" Type="Self.service_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="services">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="service_orders">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HotelManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bookings" EntityType="Self.booking" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="invoices" EntityType="Self.invoice" />
+    <EntitySet Name="room_types" EntityType="Self.room_types" />
+    <EntitySet Name="rooms" EntityType="Self.room" />
+    <EntitySet Name="service_orders" EntityType="Self.service_orders" />
+    <EntitySet Name="services" EntityType="Self.service" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_bookings_customers" Association="Self.FK_bookings_customers">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="bookings" EntitySet="bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bookings_rooms" Association="Self.FK_bookings_rooms">
+      <End Role="rooms" EntitySet="rooms" />
+      <End Role="bookings" EntitySet="bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bookings_users" Association="Self.FK_bookings_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="bookings" EntitySet="bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_invoices_bookings" Association="Self.FK_invoices_bookings">
+      <End Role="bookings" EntitySet="bookings" />
+      <End Role="invoices" EntitySet="invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_service_orders_bookings" Association="Self.FK_service_orders_bookings">
+      <End Role="bookings" EntitySet="bookings" />
+      <End Role="service_orders" EntitySet="service_orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rooms_room_types" Association="Self.FK_rooms_room_types">
+      <End Role="room_types" EntitySet="room_types" />
+      <End Role="rooms" EntitySet="rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_service_orders_services" Association="Self.FK_service_orders_services">
+      <End Role="services" EntitySet="services" />
+      <End Role="service_orders" EntitySet="service_orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

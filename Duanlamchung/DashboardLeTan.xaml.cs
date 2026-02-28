@@ -22,6 +22,14 @@ namespace Duanlamchung
         public DashboardLeTan()
         {
             InitializeComponent();
+
+            if (!Session.IsStaff)
+            {
+                MessageBox.Show("Bạn phải đăng nhập nhân viên trước!");
+                new LoginWindow().Show();
+                Close();
+                return;
+            }
         }
         private void btnDashboard_Click(object sender, RoutedEventArgs e) { }
 

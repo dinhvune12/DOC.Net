@@ -92,3 +92,11 @@ C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\BillPay.g.cs
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\CheckInOut.g.cs
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\BillPay.baml
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\CheckInOut.baml
+C:\docnetvu\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.dll
+C:\docnetvu\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.SqlServer.dll
+C:\docnetvu\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.xml
+C:\docnetvu\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.SqlServer.xml
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\LoginWindow.baml
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\LoginWindow.g.cs
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung_Content.g.cs
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.CopyComplete
