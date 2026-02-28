@@ -88,3 +88,7 @@ C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.g.resources
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.Properties.Resources.resources
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.GenerateResource.cache
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.CoreCompileInputs.cache
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\BillPay.g.cs
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\CheckInOut.g.cs
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\BillPay.baml
+C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\CheckInOut.baml

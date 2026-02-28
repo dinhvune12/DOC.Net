@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BillPay.xaml.cs">
+      <DependentUpon>BillPay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckInOut.xaml.cs">
+      <DependentUpon>CheckInOut.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DangKyDangnhapKhach.xaml.cs">
       <DependentUpon>DangKyDangnhapKhach.xaml</DependentUpon>
     </Compile>
@@ -88,6 +94,14 @@
     <Compile Include="TimPhong.xaml.cs">
       <DependentUpon>TimPhong.xaml</DependentUpon>
     </Compile>
+    <Page Include="BillPay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CheckInOut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DangKyDangnhapKhach.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
