@@ -58,19 +58,19 @@
                     <TextBlock Text="Full Name:"/>
                     <TextBox x:Name="txtFullName"
                              Grid.Column="1"
-                             Margin="5"/>
+                             Margin="5" TextChanged="TxtFullName_TextChanged"/>
 
                     <TextBlock Text="Phone:" Grid.Row="1"/>
                     <TextBox x:Name="txtPhone"
                              Grid.Row="1"
                              Grid.Column="1"
-                             Margin="5"/>
+                             Margin="5" TextChanged="TxtPhone_TextChanged"/>
 
                     <TextBlock Text="ID / Passport:" Grid.Row="2"/>
                     <TextBox x:Name="txtIDPassport"
                              Grid.Row="2"
                              Grid.Column="1"
-                             Margin="5"/>
+                             Margin="5" TextChanged="TxtIDPassport_TextChanged"/>
 
                     <TextBlock Text="Note:" Grid.Row="3"/>
                     <TextBox x:Name="txtNote"
@@ -78,7 +78,7 @@
                              Grid.Column="1"
                              Height="70"
                              AcceptsReturn="True"
-                             Margin="5"/>
+                             Margin="5" TextChanged="TxtNote_TextChanged"/>
                 </Grid>
             </GroupBox>
 
@@ -117,7 +117,7 @@
                     <ComboBox x:Name="cbRoomNumber"
                               Grid.Row="1"
                               Grid.Column="1"
-                              Margin="5">
+                              Margin="5" SelectionChanged="CbRoomNumber_SelectionChanged">
                         <ComboBoxItem Content="101"/>
                         <ComboBoxItem Content="102"/>
                         <ComboBoxItem Content="201"/>
@@ -141,7 +141,7 @@
                     <ComboBox x:Name="cbStatus"
                               Grid.Row="4"
                               Grid.Column="1"
-                              Margin="5">
+                              Margin="5" SelectionChanged="CbStatus_SelectionChanged">
                         <ComboBoxItem Content="Pending"/>
                         <ComboBoxItem Content="Confirmed"/>
                         <ComboBoxItem Content="Checked In"/>
@@ -154,7 +154,7 @@
                              Grid.Column="1"
                              Margin="5"
                              IsReadOnly="True"
-                             Text="0"/>
+                             Text="0" TextChanged="TxtTotalPrice_TextChanged"/>
                 </Grid>
             </GroupBox>
         </Grid>
