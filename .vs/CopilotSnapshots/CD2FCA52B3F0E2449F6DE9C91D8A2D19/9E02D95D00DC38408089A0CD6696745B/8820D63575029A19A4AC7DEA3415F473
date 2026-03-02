@@ -1,0 +1,12 @@
+﻿# Copilot Instructions
+
+## General Guidelines
+- First general instruction
+- Second general instruction
+
+## Code Style
+- Use specific formatting rules
+- Follow naming conventions
+
+## Project-Specific Rules
+- Receptionist accounts must sign in and be redirected to the receptionist dashboard (DashboardLeTan) instead of the customer flow.

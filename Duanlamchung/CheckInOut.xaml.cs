@@ -106,7 +106,7 @@ namespace Duanlamchung
                 return;
             }
 
-            // demo: cho check-out luôn (thực tế bạn sẽ check hóa đơn đã paid chưa)
+     
             b.Status = "CheckedOut";
             ApplyFilter();
             SelectById(b.BookingId);
@@ -131,12 +131,15 @@ namespace Duanlamchung
             Close();
         }
 
-        // ====== HELPERS ======
+    
 
         private void ApplyFilter()
         {
+            
+            if (txtSearch == null || cbFilter == null) return;
+
             string q = (txtSearch.Text ?? "").Trim().ToLower();
-            int filterIndex = cbFilter.SelectedIndex; // 0 all, 1 pending/confirmed, 2 checkedin, 3 checkedout
+            int filterIndex = cbFilter.SelectedIndex;
 
             var data = _all.AsEnumerable();
 
@@ -145,7 +148,7 @@ namespace Duanlamchung
             if (filterIndex == 3) data = data.Where(x => x.Status == "CheckedOut");
 
             if (!string.IsNullOrEmpty(q))
-            {
+            { 
                 data = data.Where(x =>
                     (x.BookingId ?? "").ToLower().Contains(q) ||
                     (x.CustomerName ?? "").ToLower().Contains(q) ||
@@ -177,6 +180,31 @@ namespace Duanlamchung
             btnCheckIn.IsEnabled = false;
             btnCheckOut.IsEnabled = false;
             btnInvoice.IsEnabled = false;
+        }
+        private void LoadBookingsFromEntity()
+        {
+            using (var db = new HotelManagerEntities())
+            {
+                var list = (from b in db.bookings
+                            join c in db.customers on b.customer_id equals c.id
+                            join r in db.rooms on b.room_id equals r.id
+                            join rt in db.room_types on r.room_type_id equals rt.id
+                            orderby b.id descending
+                            select new BookingRow
+                            {
+                                BookingId = b.id.ToString(),
+                                CustomerName = c.full_name,
+                                RoomNo = r.room_number,
+                                RoomType = rt.name,
+                                CheckInDate = b.check_in_date.ToString("dd/MM/yyyy"),
+                                CheckOutDate = b.check_out_date.ToString("dd/MM/yyyy"),
+                                Status = b.status
+                            }).ToList();
+
+                _all.Clear();
+                foreach (var x in list) _all.Add(x);
+            }
+            ApplyFilter();
         }
     }
 }

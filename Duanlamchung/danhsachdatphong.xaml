@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Duanlamchung"
         mc:Ignorable="d"
-       Title="Danh sách đặt phòng" Height="450" Width="800"
+        Title="Danh sách đặt phòng" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         Background="#F6F7FB">
 
@@ -16,6 +16,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- HEADER -->
         <Border Grid.Row="0" Background="White" CornerRadius="10" Padding="10" Margin="0,0,0,8">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Left">
@@ -26,15 +27,18 @@
                     <Button x:Name="BtnRefresh" Content="Làm mới"
                             Width="90" Height="30" Margin="0,0,6,0"
                             Background="#E5E7EB" Foreground="#111827"
-                            BorderThickness="0" Cursor="Hand"/>
+                            BorderThickness="0" Cursor="Hand"
+                            Click="BtnRefresh_Click"/>
                     <Button x:Name="BtnExport" Content="Xuất"
                             Width="70" Height="30"
                             Background="#E5E7EB" Foreground="#111827"
-                            BorderThickness="0" Cursor="Hand"/>
+                            BorderThickness="0" Cursor="Hand"
+                            Click="BtnExport_Click"/>
                 </StackPanel>
             </DockPanel>
         </Border>
 
+        <!-- FILTER + SEARCH -->
         <Border Grid.Row="1" Background="White" CornerRadius="10" Padding="10" Margin="0,0,0,8">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -42,6 +46,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
+                <!-- FILTER -->
                 <StackPanel Grid.Column="0" Margin="0,0,8,0">
                     <TextBlock Text="BỘ LỌC" FontWeight="Bold" Foreground="#374151"/>
 
@@ -68,14 +73,17 @@
                         <Button x:Name="BtnApplyFilter" Content="Áp dụng"
                                 Width="85" Height="30" Margin="10,0,6,0"
                                 Background="#2563EB" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="BtnApplyFilter_Click"/>
                         <Button x:Name="BtnClearFilter" Content="Xóa lọc"
                                 Width="85" Height="30"
                                 Background="#E5E7EB" Foreground="#111827"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="BtnClearFilter_Click"/>
                     </WrapPanel>
                 </StackPanel>
 
+                <!-- SEARCH + ACTION -->
                 <StackPanel Grid.Column="1" Margin="8,0,0,0">
                     <TextBlock Text="TÌM VÀ THAO TÁC" FontWeight="Bold" Foreground="#374151"/>
 
@@ -94,26 +102,31 @@
                         <Button x:Name="BtnSearch" Content="Tìm"
                                 Width="55" Height="30" Margin="6,0,6,0"
                                 Background="#2563EB" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="BtnSearch_Click"/>
                         <Button x:Name="BtnClearSearch" Content="Xóa"
                                 Width="55" Height="30"
                                 Background="#E5E7EB" Foreground="#111827"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="BtnClearSearch_Click"/>
                     </WrapPanel>
 
                     <WrapPanel Margin="0,8,0,0">
                         <Button x:Name="BtnConfirm" Content="Xác nhận"
                                 Width="90" Height="30" Margin="0,0,6,0"
                                 Background="#16A34A" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="BtnConfirm_Click"/>
                         <Button x:Name="BtnCancel" Content="Hủy"
                                 Width="70" Height="30" Margin="0,0,6,0"
                                 Background="#DC2626" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="BtnCancel_Click"/>
                         <Button x:Name="BtnOpenCheckIn" Content="Mở Check-in"
                                 Width="110" Height="30"
                                 Background="#F59E0B" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="BtnOpenCheckIn_Click"/>
                     </WrapPanel>
 
                     <TextBlock x:Name="TxtCount" Text="(0 dòng)" Foreground="#6B7280" Margin="0,6,0,0"/>
@@ -121,6 +134,7 @@
             </Grid>
         </Border>
 
+        <!-- TABLE -->
         <Border Grid.Row="2" Background="White" CornerRadius="10" Padding="8">
             <DataGrid x:Name="DgBookings"
                       AutoGenerateColumns="False"
@@ -131,7 +145,9 @@
                       HeadersVisibility="Column"
                       RowHeight="30"
                       GridLinesVisibility="None"
-                      AlternationCount="2">
+                      AlternationCount="2"
+                      SelectionChanged="DgBookings_SelectionChanged">
+
                 <DataGrid.Resources>
                     <Style TargetType="DataGridRow">
                         <Setter Property="Background" Value="White"/>

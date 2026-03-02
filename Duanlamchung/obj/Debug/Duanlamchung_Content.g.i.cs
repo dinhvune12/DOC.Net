@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dbhotelmanager.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dbhotelmanager.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("hotelmanagerentities2.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("hotelmanagerentities2.tt")]
 
 

@@ -68,13 +68,14 @@
       <DependentUpon>BillPay.xaml</DependentUpon>
     </Compile>
     <Compile Include="booking.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
+    <Compile Include="BookingListItem.cs" />
     <Compile Include="CheckInOut.xaml.cs">
       <DependentUpon>CheckInOut.xaml</DependentUpon>
     </Compile>
     <Compile Include="customer.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="DangKyDangnhapKhach.xaml.cs">
       <DependentUpon>DangKyDangnhapKhach.xaml</DependentUpon>
@@ -91,27 +92,25 @@
     <Compile Include="DatphongLeTan.xaml.cs">
       <DependentUpon>DatphongLeTan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DBHotelManager.Context.cs">
+    <Compile Include="HotelManagerEntities2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBHotelManager.Context.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBHotelManager.cs">
+    <Compile Include="HotelManagerEntities2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBHotelManager.Designer.cs">
+    <Compile Include="HotelManagerEntities2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBHotelManager.edmx</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.edmx</DependentUpon>
     </Compile>
     <Compile Include="invoice.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Nav.cs" />
     <Compile Include="quanlikhachhang.xaml.cs">
       <DependentUpon>quanlikhachhang.xaml</DependentUpon>
     </Compile>
@@ -121,20 +120,24 @@
     <Compile Include="Quanlytaikhoan.xaml.cs">
       <DependentUpon>Quanlytaikhoan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegisterCustomer.xaml.cs">
+      <DependentUpon>RegisterCustomer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="room.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="RoommapLeTan.xaml.cs">
       <DependentUpon>RoommapLeTan.xaml</DependentUpon>
     </Compile>
     <Compile Include="room_types.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
+    <Compile Include="SeedData.cs" />
     <Compile Include="service.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="service_orders.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="Thongtinphong.xaml.cs">
@@ -144,8 +147,9 @@
       <DependentUpon>TimPhong.xaml</DependentUpon>
     </Compile>
     <Compile Include="user.cs">
-      <DependentUpon>DBHotelManager.tt</DependentUpon>
+      <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils\PasswordHasher.cs" />
     <Page Include="BillPay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,10 +178,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -199,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Quanlytaikhoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegisterCustomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,12 +237,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DBHotelManager.edmx">
+    <EntityDeploy Include="HotelManagerEntities2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBHotelManager.Designer.cs</LastGenOutput>
+      <LastGenOutput>HotelManagerEntities2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DBHotelManager.edmx.diagram">
-      <DependentUpon>DBHotelManager.edmx</DependentUpon>
+    <None Include="HotelManagerEntities2.edmx.diagram">
+      <DependentUpon>HotelManagerEntities2.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -250,19 +254,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBHotelManager.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBHotelManager.Context.cs</LastGenOutput>
-      <DependentUpon>DBHotelManager.edmx</DependentUpon>
-    </Content>
-    <Content Include="DBHotelManager.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBHotelManager.edmx</DependentUpon>
-      <LastGenOutput>DBHotelManager.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="HotelManagerEntities2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelManagerEntities2.edmx</DependentUpon>
+      <LastGenOutput>HotelManagerEntities2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HotelManagerEntities2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelManagerEntities2.edmx</DependentUpon>
+      <LastGenOutput>HotelManagerEntities2.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
