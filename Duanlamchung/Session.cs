@@ -6,24 +6,28 @@ using System.Threading.Tasks;
 
 namespace Duanlamchung
 {
-    
-        public static class Session
+    public static class Session
+    {
+        public static user CurrentUser { get; private set; }
+
+        public static bool IsStaff
         {
-            public static int? UserId { get; set; }
-            public static string UserFullName { get; set; }
-            public static string UserRole { get; set; }
-
-            public static int? CustomerId { get; set; }
-            public static string CustomerName { get; set; }
-
-            public static bool IsStaff => UserId.HasValue;
-            public static bool IsCustomer => CustomerId.HasValue;
-
-            public static void Logout()
+            get
             {
-                UserId = null; UserFullName = null; UserRole = null;
-                CustomerId = null; CustomerName = null;
+                return CurrentUser != null &&
+                       string.Equals(CurrentUser.role, "receptionist", StringComparison.OrdinalIgnoreCase);
             }
         }
+
+        public static void Login(user usr)
+        {
+            CurrentUser = usr;
+        }
+
+        public static void Logout()
+        {
+            CurrentUser = null;
+        }
     }
+}
 

@@ -9,11 +9,19 @@ namespace Duanlamchung
         public DashboardLeTan()
         {
             InitializeComponent();
+            Loaded += DashboardLeTan_Loaded;
+        }
 
+        private void DashboardLeTan_Loaded(object sender, RoutedEventArgs e)
+        {
             if (!Session.IsStaff)
             {
                 MessageBox.Show("Bạn phải đăng nhập nhân viên trước!");
-                Nav.Go(this, new DangKyDangnhapKhach());
+
+                var login = new DangKyDangnhapKhach();
+                login.Show();
+
+                this.Close();
                 return;
             }
 

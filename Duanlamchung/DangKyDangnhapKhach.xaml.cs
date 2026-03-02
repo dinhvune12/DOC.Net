@@ -4,19 +4,32 @@ using System.Windows;
 using System.Windows.Input;
 using System.Data.Entity;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using Duanlamchung.Utils;
 
 namespace Duanlamchung
 {
     public partial class DangKyDangnhapKhach : Window
     {
-        // secret admin code để tạo tài khoản lễ tân (thay đổi theo môi trường)
+        // secret admin code để tạo tài khoản lễ tân
         private const string AdminCreationCode = "vudeptrai";
 
         public DangKyDangnhapKhach()
         {
             InitializeComponent();
+        }
+        private void OpenNextWindow(Window nextWindow)
+        {
+            if (nextWindow == null) return;
+
+            nextWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            // đặt cửa sổ mới thành MainWindow trước khi đóng cửa sổ hiện tại
+            Application.Current.MainWindow = nextWindow;
+
+            nextWindow.Show();
+
+            // đóng cửa sổ hiện tại sau khi cửa sổ mới đã mở
+            this.Close();
         }
 
         private void BtnMinimize_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
@@ -27,25 +40,27 @@ namespace Duanlamchung
             PerformLogin();
         }
 
-        private void BtnForgotPassword_Click(object sender, RoutedEventArgs e) { /* implement forgot password if needed */ }
+        private void BtnForgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Chức năng quên mật khẩu chưa được cài đặt.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
         private void BtnGuestContinue_Click(object sender, RoutedEventArgs e)
         {
-            var win = new TimPhong { Owner = this };
-            win.Show();
-            Dispatcher.BeginInvoke(new Action(() => Close()), DispatcherPriority.Background);
+            OpenNextWindow(new TimPhong());
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var fullName = (TbRegFullName.Text ?? "").Trim();
-                var phone = (TbRegPhone.Text ?? "").Trim();
-                var email = (TbRegEmail.Text ?? "").Trim();
-                var cccd = (TbRegCccd.Text ?? "").Trim();
-                var password = (PbRegPassword?.Password ?? "");
-                var confirm = (PbRegConfirm?.Password ?? "");
+                var fullName = ReadTextControl(TbRegFullName).Trim();
+                var phone = ReadTextControl(TbRegPhone).Trim();
+                var email = ReadTextControl(TbRegEmail).Trim();
+                var cccd = ReadTextControl(TbRegCccd).Trim();
+
+                var password = ReadPasswordValue(PbRegPassword, "PbRegPassword", "TbRegPassword", "TxtRegPassword", "RegPasswordTextBox");
+                var confirm = ReadPasswordValue(PbRegConfirm, "PbRegConfirm", "TbRegConfirm", "TxtRegConfirm", "RegConfirmTextBox");
 
                 if (string.IsNullOrWhiteSpace(fullName))
                 {
@@ -65,6 +80,12 @@ namespace Duanlamchung
                     return;
                 }
 
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    MessageBox.Show("Vui lòng nhập mật khẩu.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 if (password.Length < 8)
                 {
                     MessageBox.Show("Mật khẩu nên có ít nhất 8 ký tự.", "Mật khẩu yếu", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -77,13 +98,11 @@ namespace Duanlamchung
                     return;
                 }
 
-                // lấy role từ ComboBox
                 var role = (CbRegRole.SelectedItem as ComboBoxItem)?.Tag?.ToString() ?? "customer";
 
-                // nếu tạo lễ tân thì kiểm tra mã quản trị
                 if (string.Equals(role, "receptionist", StringComparison.OrdinalIgnoreCase))
                 {
-                    var code = (TbAdminCode.Text ?? "").Trim();
+                    var code = ReadTextControl(TbAdminCode).Trim();
                     if (code != AdminCreationCode)
                     {
                         MessageBox.Show("Mã quản trị không hợp lệ. Không thể tạo tài khoản lễ tân.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -91,16 +110,27 @@ namespace Duanlamchung
                     }
                 }
 
+                user newUser;
+
                 using (var db = new HotelManagerEntities())
                 {
-                    var dup = db.customers.Any(x =>
+                    var dupCustomer = db.customers.Any(x =>
                         x.phone == phone ||
                         (!string.IsNullOrEmpty(cccd) && x.identity_card == cccd) ||
                         (!string.IsNullOrEmpty(email) && x.email == email));
 
-                    if (dup)
+                    if (dupCustomer)
                     {
                         MessageBox.Show("Số điện thoại, CCCD hoặc email đã tồn tại.", "Trùng dữ liệu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    var username = !string.IsNullOrWhiteSpace(email) ? email : phone;
+
+                    var userExists = db.Set<user>().Any(u => u.username == username || u.phone == phone);
+                    if (userExists)
+                    {
+                        MessageBox.Show("Tài khoản người dùng đã tồn tại.", "Trùng dữ liệu", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
@@ -114,21 +144,9 @@ namespace Duanlamchung
                     };
 
                     db.customers.Add(customer);
-                    db.SaveChanges();
-
-                    var username = !string.IsNullOrWhiteSpace(email) ? email : phone;
-
-                    var userExists = db.Set<user>().Any(u => u.username == username || u.phone == phone);
-                    if (userExists)
-                    {
-                        db.customers.Remove(customer);
-                        db.SaveChanges();
-                        MessageBox.Show("Tài khoản người dùng đã tồn tại.", "Trùng dữ liệu", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
-                    }
 
                     var hashed = PasswordHasher.HashPassword(password);
-                    var newUser = new user
+                    newUser = new user
                     {
                         username = username,
                         password = hashed,
@@ -142,16 +160,19 @@ namespace Duanlamchung
                     db.SaveChanges();
                 }
 
-                MessageBox.Show("Đăng ký thành công! Đang chuyển sang đăng nhập...", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Tạo tài khoản thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                try
+                // auto login luôn sau khi tạo tài khoản
+                Session.Login(newUser);
+
+                if (string.Equals(role, "receptionist", StringComparison.OrdinalIgnoreCase))
                 {
-                    AuthTab.SelectedIndex = 0;
-                    TbLoginIdentity.Text = !string.IsNullOrWhiteSpace(email) ? email : phone;
-                    PbLoginPassword.Password = password;
-                    PerformLogin();
+                    OpenNextWindow(new DashboardLeTan());
                 }
-                catch { }
+                else
+                {
+                    OpenNextWindow(new TimPhong());
+                }
             }
             catch (Exception ex)
             {
@@ -161,11 +182,11 @@ namespace Duanlamchung
 
         private bool PerformLogin()
         {
-            var identity = (TbLoginIdentity.Text ?? "").Trim();
-            var password = (PbLoginPassword?.Password ?? "");
+            var identity = ReadTextControl(TbLoginIdentity).Trim();
+            var password = ReadPasswordValue(PbLoginPassword, "PbLoginPassword", "TbLoginPassword", "TxtLoginPassword", "LoginPasswordTextBox");
             var requireStaff = CbLoginAsStaff.IsChecked == true;
 
-            if (string.IsNullOrWhiteSpace(identity) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrWhiteSpace(identity) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Vui lòng nhập thông tin đăng nhập.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -182,7 +203,25 @@ namespace Duanlamchung
                         return false;
                     }
 
-                    if (!PasswordHasher.VerifyPassword(password, usr.password))
+                    bool isPasswordCorrect = false;
+
+                    if (usr.password == password)
+                    {
+                        isPasswordCorrect = true;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            isPasswordCorrect = PasswordHasher.VerifyPassword(password, usr.password);
+                        }
+                        catch
+                        {
+                            isPasswordCorrect = false;
+                        }
+                    }
+
+                    if (!isPasswordCorrect)
                     {
                         MessageBox.Show("Mật khẩu không đúng.", "Lỗi đăng nhập", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return false;
@@ -194,21 +233,20 @@ namespace Duanlamchung
                         return false;
                     }
 
-                    // authenticated -> chuyển hướng theo role
+                    MessageBox.Show("Đăng nhập thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    Session.Login(usr);
+
                     if (string.Equals(usr.role, "receptionist", StringComparison.OrdinalIgnoreCase))
                     {
-                        var dashboard = new DashboardLeTan();
-                        dashboard.Show();
-                        Dispatcher.BeginInvoke(new Action(() => Close()), DispatcherPriority.Background);
-                        return true;
+                        OpenNextWindow(new DashboardLeTan());
                     }
                     else
                     {
-                        var customerWin = new TimPhong();
-                        customerWin.Show();
-                        Dispatcher.BeginInvoke(new Action(() => Close()), DispatcherPriority.Background);
-                        return true;
+                        OpenNextWindow(new TimPhong());
                     }
+
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -218,9 +256,42 @@ namespace Duanlamchung
             }
         }
 
+        private string ReadTextControl(object control)
+        {
+            if (control is TextBox tb)
+                return tb.Text ?? "";
+
+            return "";
+        }
+
+        private string ReadPasswordValue(object mainControl, params string[] fallbackNames)
+        {
+            // ưu tiên control chính
+            if (mainControl is PasswordBox pb && !string.IsNullOrEmpty(pb.Password))
+                return pb.Password;
+
+            if (mainControl is TextBox tb && !string.IsNullOrEmpty(tb.Text))
+                return tb.Text;
+
+            // fallback theo tên control trong XAML
+            foreach (var name in fallbackNames)
+            {
+                var found = this.FindName(name);
+
+                if (found is PasswordBox foundPb && !string.IsNullOrEmpty(foundPb.Password))
+                    return foundPb.Password;
+
+                if (found is TextBox foundTb && !string.IsNullOrEmpty(foundTb.Text))
+                    return foundTb.Text;
+            }
+
+            return "";
+        }
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ButtonState == MouseButtonState.Pressed) DragMove();
+            if (e.ButtonState == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }
