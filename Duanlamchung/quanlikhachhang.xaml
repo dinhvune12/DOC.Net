@@ -130,7 +130,7 @@
                                 Width="90" Height="34" Margin="0,0,8,0"
                                 Background="#DC2626" Foreground="White"
                                 BorderThickness="0" Cursor="Hand"/>
-
+                        
                     </StackPanel>
                 </Grid>
             </Border>
@@ -160,6 +160,7 @@
                           GridLinesVisibility="None"
                           AlternationCount="2"
                           Margin="0,0,0,0" SelectionChanged="dgCustomers_SelectionChanged">
+
                     <DataGrid.Resources>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Background" Value="White"/>

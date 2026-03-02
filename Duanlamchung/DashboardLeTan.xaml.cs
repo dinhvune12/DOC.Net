@@ -1,44 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Duanlamchung
 {
-    /// <summary>
-    /// Interaction logic for DashboardLeTan.xaml
-    /// </summary>
     public partial class DashboardLeTan : Window
     {
         public DashboardLeTan()
         {
             InitializeComponent();
+
+            if (!Session.IsStaff)
+            {
+                MessageBox.Show("Bạn phải đăng nhập nhân viên trước!");
+                Nav.Go(this, new DangKyDangnhapKhach());
+                return;
+            }
+
+            LoadStatistics();
         }
-        private void btnDashboard_Click(object sender, RoutedEventArgs e) { }
 
-        private void btnRoomMap_Click(object sender, RoutedEventArgs e) { }
+        private void LoadStatistics()
+        {
+            using (var db = new HotelManagerEntities())
+            {
+                txtAvailableRooms.Text = db.rooms.Count(r => r.status == "available").ToString();
+                txtOccupiedRooms.Text = db.rooms.Count(r => r.status == "occupied").ToString();
 
-        private void btnBooking_Click(object sender, RoutedEventArgs e) { }
+                var today = DateTime.Today;
+                var tomorrow = today.AddDays(1);
 
-        private void btnCheckInOut_Click(object sender, RoutedEventArgs e) { }
+                txtTodayCheckIn.Text = db.bookings.Count(b => b.check_in_date >= today && b.check_in_date < tomorrow).ToString();
+                txtTodayCheckOut.Text = db.bookings.Count(b => b.check_out_date >= today && b.check_out_date < tomorrow).ToString();
+            }
+        }
 
-        private void btnLogout_Click(object sender, RoutedEventArgs e) { }
+        private void btnDashboard_Click(object sender, RoutedEventArgs e) => LoadStatistics();
 
-        private void btnOpenRoomMap_Click(object sender, RoutedEventArgs e) { }
+        private void btnRoomMap_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new RoommapLeTan());
 
-        private void btnCreateBooking_Click(object sender, RoutedEventArgs e) { }
+        private void btnBooking_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new danhsachdatphong());
 
-        private void btnQuickCheckInOut_Click(object sender, RoutedEventArgs e) { }
+        private void btnCheckInOut_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new CheckInOut());
 
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Session.Logout();
+            Nav.Go(this, new DangKyDangnhapKhach());
+        }
 
+        private void btnOpenRoomMap_Click(object sender, RoutedEventArgs e) => btnRoomMap_Click(sender, e);
+        private void btnCreateBooking_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new DatphongLeTan());
+        private void btnQuickCheckInOut_Click(object sender, RoutedEventArgs e) => btnCheckInOut_Click(sender, e);
     }
 }
