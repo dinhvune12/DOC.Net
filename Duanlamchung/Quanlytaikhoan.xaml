@@ -12,7 +12,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="QU?N L? TÀI KHO?N" 
+        <TextBlock Grid.Row="0" Text="QUẢN LÝ TÀI KhOẢN" 
                    FontSize="22" FontWeight="Bold" Foreground="#2C3E50" 
                    HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
@@ -24,24 +24,24 @@
 
             <Border Grid.Column="0" Background="White" CornerRadius="10" Padding="15" Margin="0,0,10,0">
                 <StackPanel>
-                    <TextBlock Text="Thông tin ngư?i dùng" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#34495E"/>
-                    <TextBlock Text="Tên đăng nh?p:"/>
+                    <TextBlock Text="Thông tin người dùng" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#34495E"/>
+                    <TextBlock Text="Tên đăng nhập:"/>
                     <TextBox x:Name="txtUsername" Margin="0,5,0,12" Padding="8"/>
-                    <TextBlock Text="M?t kh?u:"/>
+                    <TextBlock Text="Mật khẩu:"/>
                     <PasswordBox x:Name="txtPassword" Margin="0,5,0,12" Padding="8"/>
-                    <TextBlock Text="H? và Tên:"/>
+                    <TextBlock Text="Họ và Tên:"/>
                     <TextBox x:Name="txtFullName" Margin="0,5,0,12" Padding="8"/>
-                    <TextBlock Text="Quy?n h?n:"/>
+                    <TextBlock Text="Quyền hạn:"/>
                     <ComboBox x:Name="cbRole" Margin="0,5,0,12" Padding="5" SelectedIndex="0">
-                        <ComboBoxItem Content="L? tân (Receptionist)"/>
-                        <ComboBoxItem Content="Qu?n l? (Manager)"/>
+                        <ComboBoxItem Content="Lễ tân (Receptionist)"/>
+                        <ComboBoxItem Content="Quản lý (Manager)"/>
                     </ComboBox>
-                    <CheckBox x:Name="chkIsActive" Content="Kích ho?t tài kho?n" IsChecked="True" Margin="0,5,0,20"/>
+                    <CheckBox x:Name="chkIsActive" Content="Kích hoạt tài khoản" IsChecked="True" Margin="0,5,0,20"/>
                     <UniformGrid Columns="2" Margin="0,10,0,0">
-                        <Button Content="Thêm m?i" Background="#27AE60" Foreground="White" Margin="2" Padding="10"/>
-                        <Button Content="C?p nh?t" Background="#2980B9" Foreground="White" Margin="2" Padding="10"/>
+                        <Button Content="Thêm mới" Background="#27AE60" Foreground="White" Margin="2" Padding="10" Click="btnAdd_Click"/>
+                        <Button Content="Cập nhật" Background="#2980B9" Foreground="White" Margin="2" Padding="10" Click="btnUpdate_Click"/>
                     </UniformGrid>
-                    <Button Content="Vô hi?u hóa tài kho?n" Background="#E74C3C" Foreground="White" Margin="2,5" Padding="10"/>
+                    <Button Content="Vô hiệu hóa tài khoản" Background="#E74C3C" Foreground="White" Margin="2,5" Padding="10" Click="btnDeactivate_Click"/>
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" Background="White" CornerRadius="10" Padding="10">
@@ -51,17 +51,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0" Margin="0,0,0,10">
-                        <TextBlock Text="T?m ki?m:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <TextBox x:Name="txtSearch" Padding="5"/>
+                        <TextBlock Text="Tìm kiếm:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBox x:Name="txtSearch" Padding="5" TextChanged="txtSearch_TextChanged"/>
                     </DockPanel>
                     <DataGrid Grid.Row="1" x:Name="dgAccounts" AutoGenerateColumns="False" 
                               CanUserAddRows="False" SelectionMode="Single"
-                              BorderThickness="0" Background="Transparent">
+                              BorderThickness="0" Background="Transparent"
+                              SelectionChanged="dgAccounts_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tên ĐN" Binding="{Binding Username}" Width="100"/>
-                            <DataGridTextColumn Header="H? Tên" Binding="{Binding FullName}" Width="*"/>
-                            <DataGridTextColumn Header="Quy?n" Binding="{Binding Role}" Width="120"/>
-                            <DataGridTemplateColumn Header="Tr?ng thái" Width="100">
+                            <DataGridTextColumn Header="Họ Tên" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Quyền" Binding="{Binding Role}" Width="120"/>
+                            <DataGridTemplateColumn Header="Trạng thái" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Status}" Foreground="{Binding StatusColor}"/>

@@ -49,6 +49,12 @@ namespace Duanlamchung
             Nav.Go(this, new DangKyDangnhapKhach());
         }
 
+        private void btnRoom_Click(object sender, RoutedEventArgs e)
+        {
+            Thongtinphong frm = new Thongtinphong();
+            frm.Show();
+        }
+
         private void btnOpenRoomMap_Click(object sender, RoutedEventArgs e) => btnRoomMap_Click(sender, e);
         private void btnCreateBooking_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new DatphongLeTan());
         private void btnQuickCheckInOut_Click(object sender, RoutedEventArgs e) => btnCheckInOut_Click(sender, e);

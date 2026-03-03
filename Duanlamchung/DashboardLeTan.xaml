@@ -61,9 +61,11 @@
                         Height="40"
                         Click="btnLogout_Click"/>
 
+                <Button Content="Quản lý phòng" Width="150" Height="40" Click="btnRoom_Click"/>
+
             </StackPanel>
         </Border>
-
+ 
         <!-- MAIN CONTENT -->
         <Grid Grid.Column="1" Margin="20" x:Name="grdContent">
 
