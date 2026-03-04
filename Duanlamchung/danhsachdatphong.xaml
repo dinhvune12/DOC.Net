@@ -29,11 +29,7 @@
                             Background="#E5E7EB" Foreground="#111827"
                             BorderThickness="0" Cursor="Hand"
                             Click="BtnRefresh_Click"/>
-                    <Button x:Name="BtnExport" Content="Xuất"
-                            Width="70" Height="30"
-                            Background="#E5E7EB" Foreground="#111827"
-                            BorderThickness="0" Cursor="Hand"
-                            Click="BtnExport_Click"/>
+                   
                 </StackPanel>
             </DockPanel>
         </Border>

@@ -8,7 +8,6 @@ namespace Duanlamchung
 {
     public partial class CheckInOut : Window
     {
-        // Demo model (để chạy được ngay). Sau bạn muốn nối DB thì thay list này.
         public class BookingRow
         {
             public string BookingId { get; set; }
@@ -17,7 +16,7 @@ namespace Duanlamchung
             public string RoomType { get; set; }
             public string CheckInDate { get; set; }
             public string CheckOutDate { get; set; }
-            public string Status { get; set; } // Pending/Confirmed/CheckedIn/CheckedOut
+            public string Status { get; set; }
         }
 
         private ObservableCollection<BookingRow> _all = new ObservableCollection<BookingRow>();
@@ -27,19 +26,12 @@ namespace Duanlamchung
         {
             InitializeComponent();
 
-            // gán datasource
             dgBookings.ItemsSource = _view;
 
-            // data demo
-            _all.Add(new BookingRow { BookingId = "BK001", CustomerName = "Nguyễn Văn A", RoomNo = "101", RoomType = "Deluxe", CheckInDate = "28/02/2026", CheckOutDate = "01/03/2026", Status = "Pending" });
-            _all.Add(new BookingRow { BookingId = "BK002", CustomerName = "Trần Thị B", RoomNo = "202", RoomType = "VIP", CheckInDate = "28/02/2026", CheckOutDate = "02/03/2026", Status = "CheckedIn" });
-            _all.Add(new BookingRow { BookingId = "BK003", CustomerName = "Lê Văn C", RoomNo = "303", RoomType = "Standard", CheckInDate = "27/02/2026", CheckOutDate = "28/02/2026", Status = "CheckedOut" });
-
-            ApplyFilter();
+            SeedData.EnsureSeed();
+            LoadBookingsFromEntity();
             ClearDetail();
         }
-
-        // ====== EVENTS (đúng y chang tên trong XAML) ======
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -61,7 +53,6 @@ namespace Duanlamchung
                 txtDateRange.Text = $"{b.CheckInDate} → {b.CheckOutDate}";
                 txtStatus.Text = b.Status;
 
-                // enable/disable nút theo trạng thái
                 btnCheckIn.IsEnabled = (b.Status == "Pending" || b.Status == "Confirmed");
                 btnCheckOut.IsEnabled = (b.Status == "CheckedIn");
                 btnInvoice.IsEnabled = true;
@@ -86,8 +77,37 @@ namespace Duanlamchung
                 return;
             }
 
-            b.Status = "CheckedIn";
-            ApplyFilter();
+            if (!int.TryParse(b.BookingId, out int bookingId))
+            {
+                MessageBox.Show("Mã booking không hợp lệ.");
+                return;
+            }
+
+            using (var db = new HotelManagerEntities())
+            {
+                var booking = db.bookings.FirstOrDefault(x => x.id == bookingId);
+                if (booking == null)
+                {
+                    MessageBox.Show("Không tìm thấy booking trong CSDL.");
+                    return;
+                }
+
+                if (booking.status != "Pending" && booking.status != "Confirmed")
+                {
+                    MessageBox.Show("Booking không ở trạng thái chờ check-in.");
+                    return;
+                }
+
+                booking.status = "CheckedIn";
+
+                var room = db.rooms.FirstOrDefault(x => x.id == booking.room_id);
+                if (room != null)
+                    room.status = "occupied";
+
+                db.SaveChanges();
+            }
+
+            LoadBookingsFromEntity();
             SelectById(b.BookingId);
             MessageBox.Show("Check-in thành công!");
         }
@@ -106,22 +126,49 @@ namespace Duanlamchung
                 return;
             }
 
-     
-            b.Status = "CheckedOut";
-            ApplyFilter();
+            if (!int.TryParse(b.BookingId, out int bookingId))
+            {
+                MessageBox.Show("Mã booking không hợp lệ.");
+                return;
+            }
+
+            using (var db = new HotelManagerEntities())
+            {
+                var booking = db.bookings.FirstOrDefault(x => x.id == bookingId);
+                if (booking == null)
+                {
+                    MessageBox.Show("Không tìm thấy booking trong CSDL.");
+                    return;
+                }
+
+                if (booking.status != "CheckedIn")
+                {
+                    MessageBox.Show("Booking không ở trạng thái CheckedIn.");
+                    return;
+                }
+
+                booking.status = "CheckedOut";
+
+                var room = db.rooms.FirstOrDefault(x => x.id == booking.room_id);
+                if (room != null)
+                    room.status = "available";
+
+                db.SaveChanges();
+            }
+
+            LoadBookingsFromEntity();
             SelectById(b.BookingId);
             MessageBox.Show("Check-out thành công!");
         }
 
         private void btnInvoice_Click(object sender, RoutedEventArgs e)
         {
-            if (!(dgBookings.SelectedItem is BookingRow b))
+            if (!(dgBookings.SelectedItem is BookingRow))
             {
                 MessageBox.Show("Chọn 1 booking trước.");
                 return;
             }
 
-            // Mở form BillPay
             var w = new BillPay();
             w.ShowDialog();
         }
@@ -131,11 +178,8 @@ namespace Duanlamchung
             Close();
         }
 
-    
-
         private void ApplyFilter()
         {
-            
             if (txtSearch == null || cbFilter == null) return;
 
             string q = (txtSearch.Text ?? "").Trim().ToLower();
@@ -148,7 +192,7 @@ namespace Duanlamchung
             if (filterIndex == 3) data = data.Where(x => x.Status == "CheckedOut");
 
             if (!string.IsNullOrEmpty(q))
-            { 
+            {
                 data = data.Where(x =>
                     (x.BookingId ?? "").ToLower().Contains(q) ||
                     (x.CustomerName ?? "").ToLower().Contains(q) ||
@@ -181,29 +225,42 @@ namespace Duanlamchung
             btnCheckOut.IsEnabled = false;
             btnInvoice.IsEnabled = false;
         }
+
         private void LoadBookingsFromEntity()
         {
             using (var db = new HotelManagerEntities())
             {
-                var list = (from b in db.bookings
-                            join c in db.customers on b.customer_id equals c.id
-                            join r in db.rooms on b.room_id equals r.id
-                            join rt in db.room_types on r.room_type_id equals rt.id
-                            orderby b.id descending
-                            select new BookingRow
-                            {
-                                BookingId = b.id.ToString(),
-                                CustomerName = c.full_name,
-                                RoomNo = r.room_number,
-                                RoomType = rt.name,
-                                CheckInDate = b.check_in_date.ToString("dd/MM/yyyy"),
-                                CheckOutDate = b.check_out_date.ToString("dd/MM/yyyy"),
-                                Status = b.status
-                            }).ToList();
+                var raw = (from b in db.bookings
+                           join c in db.customers on b.customer_id equals c.id
+                           join r in db.rooms on b.room_id equals r.id
+                           join rt in db.room_types on r.room_type_id equals rt.id
+                           orderby b.id descending
+                           select new
+                           {
+                               b.id,
+                               c.full_name,
+                               r.room_number,
+                               RoomTypeName = rt.name,
+                               b.check_in_date,
+                               b.check_out_date,
+                               b.status
+                           }).ToList();
+
+                var list = raw.Select(x => new BookingRow
+                {
+                    BookingId = x.id.ToString(),
+                    CustomerName = x.full_name,
+                    RoomNo = x.room_number,
+                    RoomType = x.RoomTypeName,
+                    CheckInDate = x.check_in_date.ToString("dd/MM/yyyy"),
+                    CheckOutDate = x.check_out_date.ToString("dd/MM/yyyy"),
+                    Status = x.status
+                }).ToList();
 
                 _all.Clear();
                 foreach (var x in list) _all.Add(x);
             }
+
             ApplyFilter();
         }
     }
