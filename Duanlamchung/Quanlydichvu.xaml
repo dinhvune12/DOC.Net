@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Quanlydichvu" Height="450" Width="800">
     <TabControl Margin="10">
-        <TabItem Header="Qu?n l? D?ch v?">
+        <TabItem Header="Quan lý Dịch vụ">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -15,31 +15,16 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
-                    <TextBox x:Name="txtServiceName" Width="150" Margin="5" Tag="Tên d?ch v?"/>
+                    <TextBox x:Name="txtServiceName" Width="150" Margin="5" Tag="Tên dịch vụ"/>
                     <TextBox x:Name="txtPrice" Width="100" Margin="5" Tag="Đơn giá"/>
-                    <CheckBox x:Name="chkActive" Content="Kích ho?t" VerticalAlignment="Center" IsChecked="True" Margin="5"/>
-                    <Button Content="Thêm D?ch V?" Margin="5" Padding="10,0"/>
+                    <CheckBox x:Name="chkActive" Content="Kích hoạt" VerticalAlignment="Center" IsChecked="True" Margin="5"/>
+                    <Button Content="Thêm Dịch Vụ" Margin="5" Padding="10,0" Click="btnAddService_Click"/>
                 </StackPanel>
 
                 <DataGrid Grid.Row="1" x:Name="dgServices" AutoGenerateColumns="True" Background="#F8F9FA"/>
             </Grid>
         </TabItem>
 
-        <TabItem Header="Tài kho?n L? tân">
-            <Grid Margin="10">
-                <StackPanel Width="300" HorizontalAlignment="Left">
-                    <TextBlock Text="T?o tài kho?n m?i" FontSize="16" Margin="0,0,0,10"/>
-                    <TextBlock Text="Tên đăng nh?p:"/>
-                    <TextBox Margin="0,5,0,10" Padding="5"/>
-                    <TextBlock Text="M?t kh?u:"/>
-                    <PasswordBox Margin="0,5,0,10" Padding="5"/>
-                    <TextBlock Text="Nh?p l?i m?t kh?u:"/>
-                    <PasswordBox Margin="0,5,0,10" Padding="5"/>
-                    <TextBlock Text="H? tên nhân viên:"/>
-                    <TextBox Margin="0,5,0,15" Padding="5"/>
-                    <Button Content="T?o Tài Kho?n" Background="#17A2B8" Foreground="White" Padding="10"/>
-                </StackPanel>
-            </Grid>
-        </TabItem>
+        
     </TabControl>
-</Window>
+</Window>   

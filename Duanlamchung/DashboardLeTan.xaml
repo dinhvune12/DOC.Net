@@ -60,7 +60,7 @@
                         Margin="0,30,0,0"
                         Height="40"
                         Click="btnLogout_Click"/>
-
+                <Button Content="Quản lý phòng" Width="150" Height="40" Click="btnRoom_Click"/>
             </StackPanel>
         </Border>
 

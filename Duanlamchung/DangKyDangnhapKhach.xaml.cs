@@ -9,7 +9,7 @@ using Duanlamchung.Utils;
 
 namespace Duanlamchung
 {
-    public partial class DangKyDangnhapKhach : Window
+    public partial class DangKyDangnhapKhach : Window       
     {
         // secret admin code để tạo tài khoản lễ tân (thay đổi theo môi trường)
         private const string AdminCreationCode = "vudeptrai";
@@ -193,6 +193,15 @@ namespace Duanlamchung
                         MessageBox.Show("Tài khoản này không có quyền lễ tân.", "Quyền truy cập", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return false;
                     }
+
+                    // --- Gán Session trước khi mở cửa sổ mới ---
+                    Session.UserId = usr.id;
+                    Session.UserFullName = usr.full_name;
+                    Session.UserRole = usr.role;
+                    // clear customer session when staff logs in via user table
+                    Session.CustomerId = null;
+                    Session.CustomerName = null;
+                    // ------------------------------------------------
 
                     // authenticated -> chuyển hướng theo role
                     if (string.Equals(usr.role, "receptionist", StringComparison.OrdinalIgnoreCase))

@@ -9,6 +9,7 @@ namespace Duanlamchung
         public DashboardLeTan()
         {
             InitializeComponent();
+            Loaded += DashboardLeTan_Loaded;
 
             if (!Session.IsStaff)
             {
@@ -19,38 +20,123 @@ namespace Duanlamchung
 
             LoadStatistics();
         }
+        private void DashboardLeTan_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!Session.IsStaff)
+            {
+                MessageBox.Show("Bạn phải đăng nhập nhân viên trước!");
 
+                var login = new DangKyDangnhapKhach();
+                login.Show();
+
+                this.Close();
+                return;
+            }
+        }
         private void LoadStatistics()
         {
             using (var db = new HotelManagerEntities())
             {
-                txtAvailableRooms.Text = db.rooms.Count(r => r.status == "available").ToString();
-                txtOccupiedRooms.Text = db.rooms.Count(r => r.status == "occupied").ToString();
+                txtAvailableRooms.Text = db.rooms
+                    .Count(r => r.status == "Available")
+                    .ToString();
 
-                var today = DateTime.Today;
-                var tomorrow = today.AddDays(1);
+                txtOccupiedRooms.Text = db.rooms
+                    .Count(r => r.status == "Occupied")
+                    .ToString();
 
-                txtTodayCheckIn.Text = db.bookings.Count(b => b.check_in_date >= today && b.check_in_date < tomorrow).ToString();
-                txtTodayCheckOut.Text = db.bookings.Count(b => b.check_out_date >= today && b.check_out_date < tomorrow).ToString();
+                DateTime today = DateTime.Today;
+                DateTime tomorrow = today.AddDays(1);
+
+                txtTodayCheckIn.Text = db.bookings
+                    .Count(b => b.check_in_date >= today &&
+                                b.check_in_date < tomorrow &&
+                                b.status != "Cancelled")
+                    .ToString();
+
+                txtTodayCheckOut.Text = db.bookings
+                    .Count(b => b.check_out_date >= today &&
+                                b.check_out_date < tomorrow &&
+                                b.status != "Cancelled")
+                    .ToString();
             }
         }
 
-        private void btnDashboard_Click(object sender, RoutedEventArgs e) => LoadStatistics();
-
-        private void btnRoomMap_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new RoommapLeTan());
-
-        private void btnBooking_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new danhsachdatphong());
-
-        private void btnCheckInOut_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new CheckInOut());
-
-        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        // ================= DASHBOARD =================
+        private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
-            Session.Logout();
-            Nav.Go(this, new DangKyDangnhapKhach());
+            LoadStatistics();
+            MessageBox.Show("Dashboard refreshed!");
         }
 
-        private void btnOpenRoomMap_Click(object sender, RoutedEventArgs e) => btnRoomMap_Click(sender, e);
-        private void btnCreateBooking_Click(object sender, RoutedEventArgs e) => Nav.Go(this, new DatphongLeTan());
-        private void btnQuickCheckInOut_Click(object sender, RoutedEventArgs e) => btnCheckInOut_Click(sender, e);
+        // ================= ROOM MAP =================
+        private void btnRoomMap_Click(object sender, RoutedEventArgs e)
+        {
+            Nav.Go(this, new RoommapLeTan());
+        }
+
+        // ================= BOOKING LIST =================
+        private void btnBooking_Click(object sender, RoutedEventArgs e)
+        {
+            Nav.Go(this, new DatphongLeTan());
+        }
+
+        // ================= CHECK IN / OUT =================
+        private void btnCheckInOut_Click(object sender, RoutedEventArgs e)
+        {
+            Nav.Go(this, new CheckInOut());
+        }
+
+        // ================= LOGOUT =================
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "Bạn có chắc muốn đăng xuất?",
+                "Confirm Logout",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Session.Logout();
+                Nav.Go(this, new DangKyDangnhapKhach());
+            }
+        }
+
+        // ================= QUICK BUTTONS =================
+        private void btnOpenRoomMap_Click(object sender, RoutedEventArgs e)
+        {
+            RoommapLeTan roommap = new RoommapLeTan();
+            roommap.Show();
+            this.Close();   // nếu muốn đóng Dashboard
+        }
+
+        private void btnCreateBooking_Click(object sender, RoutedEventArgs e)
+        {
+            DatphongLeTan booking = new DatphongLeTan();
+            booking.Show();
+            this.Close();
+        }
+
+        private void btnQuickCheckInOut_Click(object sender, RoutedEventArgs e)
+        {
+            CheckInOut check = new CheckInOut();
+            check.Show();
+            this.Close();
+        }
+
+        // ================= AUTO REFRESH KHI QUAY LẠI =================
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            LoadStatistics();
+        }
+
+        private void btnRoom_Click(object sender, RoutedEventArgs e)
+        {
+            Thongtinphong frm = new Thongtinphong();
+            frm.Show();
+        }
     }
 }
+    

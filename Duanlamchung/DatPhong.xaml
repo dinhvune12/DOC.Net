@@ -31,7 +31,7 @@
             <Grid Margin="15">
                 <DataGrid x:Name="dgBookings" AutoGenerateColumns="False" CanUserAddRows="False"
                           Background="Transparent" BorderThickness="0" GridLinesVisibility="None"
-                          RowHeight="50" FontSize="15" SelectionUnit="FullRow" IsReadOnly="True">
+                          RowHeight="50" FontSize="15" SelectionUnit="FullRow" IsReadOnly="True" SelectionChanged="dgBookings_SelectionChanged">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -67,8 +67,18 @@
         </Border>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,25,0,0">
-            <Button Content="Hủy Đặt Phòng" Background="White" Foreground="#D63031" 
-                    Width="160" Height="45" FontWeight="Bold" BorderBrush="#D63031" BorderThickness="1" Margin="0,0,15,0" Cursor="Hand">
+            <Button x:Name="HuyPhongBtn"
+            Content="Hủy Đặt Phòng"
+            Background="White"
+            Foreground="#D63031"
+            Width="160"
+            Height="45"
+            FontWeight="Bold"
+            BorderBrush="#D63031"
+            BorderThickness="1"
+            Margin="0,0,15,0"
+            Cursor="Hand"
+            Click="Button_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -76,8 +86,16 @@
                 </Button.Resources>
             </Button>
 
-            <Button Content="Xem Chi Tiết &amp; In Bill" Background="#0984E3" Foreground="White" 
-                    Width="200" Height="45" FontWeight="Bold" BorderThickness="0" Cursor="Hand">
+            <Button x:Name="ActionBtn"
+            Content="Xem Chi Tiết &amp; In Bill"
+            Background="#0984E3"
+            Foreground="White"
+            Width="200"
+            Height="45"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="Button_Click_1">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
