@@ -27,11 +27,9 @@
                     <Button x:Name="btnRefresh" Content="Làm mới"
                             Width="110" Height="34" Margin="0,0,8,0"
                             Background="#E5E7EB" Foreground="#111827"
-                            BorderThickness="0" Cursor="Hand"/>
-                    <Button x:Name="btnExport" Content="Xuất (tuỳ)"
-                            Width="110" Height="34"
-                            Background="#E5E7EB" Foreground="#111827"
-                            BorderThickness="0" Cursor="Hand"/>
+                            BorderThickness="0" Cursor="Hand"
+                            Click="btnRefresh_Click"/>
+                    
                 </StackPanel>
             </DockPanel>
         </Border>
@@ -64,11 +62,13 @@
                         <Button x:Name="btnSearch" Content="Tìm"
                                 Width="90" Height="34" Margin="0,0,8,0"
                                 Background="#2563EB" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="btnSearch_Click"/>
                         <Button x:Name="btnClearSearch" Content="Xóa lọc"
                                 Width="110" Height="34"
                                 Background="#E5E7EB" Foreground="#111827"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="btnClearSearch_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -121,15 +121,18 @@
                         <Button x:Name="btnAdd" Content="Thêm"
                                 Width="90" Height="34" Margin="0,0,8,0"
                                 Background="#16A34A" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="btnAdd_Click"/>
                         <Button x:Name="btnUpdate" Content="Sửa"
                                 Width="90" Height="34" Margin="0,0,8,0"
                                 Background="#F59E0B" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="btnUpdate_Click"/>
                         <Button x:Name="btnDelete" Content="Xóa"
                                 Width="90" Height="34" Margin="0,0,8,0"
                                 Background="#DC2626" Foreground="White"
-                                BorderThickness="0" Cursor="Hand"/>
+                                BorderThickness="0" Cursor="Hand"
+                                Click="btnDelete_Click"/>
                         
                     </StackPanel>
                 </Grid>

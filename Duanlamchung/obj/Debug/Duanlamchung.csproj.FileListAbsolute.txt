@@ -100,3 +100,37 @@ C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\RegisterCustomer.baml
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\RegisterCustomer.g.cs
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.AssemblyReference.cache
 C:\docnetvu\DOC.Net\Duanlamchung\obj\Debug\Duanlamc.1578187D.Up2Date
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.dll
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.xml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DangKyDangnhapKhach.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DatPhong.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DatphongLeTan.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\RegisterCustomer.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\TimPhong.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\BillPay.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\CheckInOut.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DangKyDangnhapKhach.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\danhsachdatphong.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DashboardLeTan.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DatPhong.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DatphongLeTan.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\quanlikhachhang.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Quanlydichvu.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Quanlytaikhoan.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\RegisterCustomer.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\RoommapLeTan.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Thongtinphong.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\TimPhong.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung_Content.g.cs
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\BillPay.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\CheckInOut.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\danhsachdatphong.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\DashboardLeTan.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\quanlikhachhang.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Quanlydichvu.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Quanlytaikhoan.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\RoommapLeTan.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Thongtinphong.baml
+C:\Users\GamingGear\Desktop\Bài nhóm docnet\DOC.Net\Duanlamchung\obj\Debug\Duanlamchung.csproj.CopyComplete
