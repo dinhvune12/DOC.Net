@@ -21,7 +21,7 @@
                     <Button Content="Thêm Dịch Vụ" Margin="5" Padding="10,0" Click="btnAddService_Click"/>
                 </StackPanel>
 
-                <DataGrid Grid.Row="1" x:Name="dgServices" AutoGenerateColumns="True" Background="#F8F9FA"/>
+                <DataGrid Grid.Row="1" x:Name="dgServices" AutoGenerateColumns="True" Background="#F8F9FA" SelectionChanged="dgServices_SelectionChanged"/>
             </Grid>
         </TabItem>
 

@@ -54,6 +54,11 @@ namespace Duanlamchung
             Quanlydichvu frm = new Quanlydichvu();
             frm.Show();
         }
+
+        private void dgServices_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
     public class Service

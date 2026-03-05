@@ -73,7 +73,6 @@
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- LEFT PANEL (WHITE CARD + SOFT GRADIENT) -->
                 <Border Grid.Column="0" CornerRadius="16" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" Padding="26">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -178,7 +177,6 @@
                     </Grid>
                 </Border>
 
-                <!-- RIGHT AUTH PANEL (WHITE) -->
                 <Border Grid.Column="1" CornerRadius="16" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" Padding="26" Margin="16,0,0,58">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -366,14 +364,14 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="TabItem">
                                             <Border x:Name="TabBd"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        BorderThickness="1"
-                        CornerRadius="12"
-                        Padding="14,10">
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent"
+                                                    BorderThickness="1"
+                                                    CornerRadius="12"
+                                                    Padding="14,10">
                                                 <ContentPresenter ContentSource="Header"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                                                  HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"/>
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsSelected" Value="True">
@@ -411,9 +409,7 @@
                                        Margin="0,6,0,0"/>
                         </StackPanel>
 
-                        <!-- TABS -->
                         <TabControl x:Name="AuthTab" Grid.Row="1" Margin="0,18,0,0" Style="{StaticResource AuthTabControlStyle}">
-                            <!-- LOGIN -->
                             <TabItem Header="Đăng nhập">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -447,7 +443,6 @@
 
                                         <StackPanel Orientation="Vertical">
                                             <CheckBox x:Name="CbRemember" Content="Ghi nhớ đăng nhập" VerticalAlignment="Center"/>
-                                            <!-- thêm checkbox để chọn đăng nhập như lễ tân -->
                                             <CheckBox x:Name="CbLoginAsStaff" Content="Đăng nhập như lễ tân" VerticalAlignment="Center" Margin="0,4,0,0"/>
                                         </StackPanel>
 
@@ -492,115 +487,92 @@
                                 </Grid>
                             </TabItem>
 
-                            <!-- REGISTER -->
                             <TabItem Header="Đăng ký">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled"
-                  Margin="0,0,-18,0">
+                                              HorizontalScrollBarVisibility="Disabled"
+                                              Margin="0,0,-18,0">
                                     <Grid Margin="0,0,0,2">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 0 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 1 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 2 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 3 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 4 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 5 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 6 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 7 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 8 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 9 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 10 -->
                                             <RowDefinition Height="Auto"/>
-                                            <!-- 11 -->
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                       Text="Tạo tài khoản mới"
-                       Foreground="{StaticResource TextMuted}"
-                       FontSize="12"
-                       Margin="2,0,0,14"/>
+                                                   Text="Tạo tài khoản mới"
+                                                   Foreground="{StaticResource TextMuted}"
+                                                   FontSize="12"
+                                                   Margin="2,0,0,14"/>
 
-                                        <TextBox Grid.Row="1"
-                     x:Name="TbRegFullName"
-                     Style="{StaticResource FloatingTextBoxStyle}"
-                     Tag="Họ và tên"
-                     Margin="0,0,0,12"/>
+                                        <TextBox Grid.Row="1" x:Name="TbRegFullName"
+                                                 Style="{StaticResource FloatingTextBoxStyle}"
+                                                 Tag="Họ và tên"
+                                                 Margin="0,0,0,12"/>
 
-                                        <TextBox Grid.Row="2"
-                     x:Name="TbRegPhone"
-                     Style="{StaticResource FloatingTextBoxStyle}"
-                     Tag="Số điện thoại"
-                     Margin="0,0,0,12"/>
+                                        <TextBox Grid.Row="2" x:Name="TbRegPhone"
+                                                 Style="{StaticResource FloatingTextBoxStyle}"
+                                                 Tag="Số điện thoại"
+                                                 Margin="0,0,0,12"/>
 
-                                        <TextBox Grid.Row="3"
-                     x:Name="TbRegEmail"
-                     Style="{StaticResource FloatingTextBoxStyle}"
-                     Tag="Email"
-                     Margin="0,0,0,12"/>
+                                        <TextBox Grid.Row="3" x:Name="TbRegEmail"
+                                                 Style="{StaticResource FloatingTextBoxStyle}"
+                                                 Tag="Email"
+                                                 Margin="0,0,0,12"/>
 
-                                        <TextBox Grid.Row="4"
-                     x:Name="TbRegCccd"
-                     Style="{StaticResource FloatingTextBoxStyle}"
-                     Tag="CCCD/CMND (tuỳ chọn)"
-                     Margin="0,0,0,12"/>
+                                        <TextBox Grid.Row="4" x:Name="TbRegCccd"
+                                                 Style="{StaticResource FloatingTextBoxStyle}"
+                                                 Tag="CCCD/CMND (tuỳ chọn)"
+                                                 Margin="0,0,0,12"/>
 
-                                        <ComboBox Grid.Row="5"
-                      x:Name="CbRegRole"
-                      Height="40"
-                      SelectedIndex="0"
-                      Margin="0,0,0,12">
+                                        <ComboBox Grid.Row="5" x:Name="CbRegRole"
+                                                  Height="40"
+                                                  SelectedIndex="0"
+                                                  Margin="0,0,0,12">
                                             <ComboBoxItem Tag="customer">Khách</ComboBoxItem>
                                             <ComboBoxItem Tag="receptionist">Lễ tân (cần mã quản trị)</ComboBoxItem>
                                         </ComboBox>
 
-                                        <TextBox Grid.Row="6"
-                     x:Name="TbAdminCode"
-                     Style="{StaticResource FloatingTextBoxStyle}"
-                     Tag="Mã quản trị (chỉ dành cho tạo lễ tân)"
-                     Margin="0,0,0,12"/>
+                                        <TextBox Grid.Row="6" x:Name="TbAdminCode"
+                                                 Style="{StaticResource FloatingTextBoxStyle}"
+                                                 Tag="Mã quản trị (chỉ dành cho tạo lễ tân)"
+                                                 Margin="0,0,0,12"/>
 
-                                        <PasswordBox Grid.Row="7"
-                         x:Name="PbRegPassword"
-                         Style="{StaticResource FloatingPasswordStyle}"
-                         Tag="Mật khẩu"
-                         Margin="0,0,0,12"/>
+                                        <PasswordBox Grid.Row="7" x:Name="PbRegPassword"
+                                                     Style="{StaticResource FloatingPasswordStyle}"
+                                                     Tag="Mật khẩu"
+                                                     Margin="0,0,0,12"/>
 
-                                        <PasswordBox Grid.Row="8"
-                         x:Name="PbRegConfirm"
-                         Style="{StaticResource FloatingPasswordStyle}"
-                         Tag="Nhập lại mật khẩu"
-                         Margin="0,0,0,12"/>
+                                        <PasswordBox Grid.Row="8" x:Name="PbRegConfirm"
+                                                     Style="{StaticResource FloatingPasswordStyle}"
+                                                     Tag="Nhập lại mật khẩu"
+                                                     Margin="0,0,0,12"/>
 
-                                        <CheckBox Grid.Row="9"
-                      x:Name="CbAgree"
-                      Content="Tôi đồng ý với Điều khoản &amp; Chính sách bảo mật"
-                      Margin="2,4,2,8"/>
+                                        <CheckBox Grid.Row="9" x:Name="CbAgree"
+                                                  Content="Tôi đồng ý với Điều khoản &amp; Chính sách bảo mật"
+                                                  Margin="2,4,2,8"/>
 
-                                        <Button Grid.Row="10"
-                    x:Name="BtnRegister"
-                    Content="Tạo tài khoản"
-                    Style="{StaticResource PrimaryButtonStyle}"
-                    Margin="0,8,0,8"
-                    Panel.ZIndex="10"
-                    Click="BtnRegister_Click"/>
+                                        <Button Grid.Row="10" x:Name="BtnRegister"
+                                                Content="Tạo tài khoản"
+                                                Style="{StaticResource PrimaryButtonStyle}"
+                                                Margin="0,8,0,8"
+                                                Panel.ZIndex="10"
+                                                Click="BtnRegister_Click"/>
 
                                         <TextBlock Grid.Row="11"
-                       Margin="0,0,0,6"
-                       Foreground="{StaticResource TextMuted}"
-                       FontSize="11"
-                       TextWrapping="Wrap"
-                       Text="Gợi ý: Mật khẩu nên có ít nhất 8 ký tự, gồm chữ và số."/>
+                                                   Margin="0,0,0,6"
+                                                   Foreground="{StaticResource TextMuted}"
+                                                   FontSize="11"
+                                                   TextWrapping="Wrap"
+                                                   Text="Gợi ý: Mật khẩu nên có ít nhất 8 ký tự, gồm chữ và số."/>
                                     </Grid>
                                 </ScrollViewer>
                             </TabItem>

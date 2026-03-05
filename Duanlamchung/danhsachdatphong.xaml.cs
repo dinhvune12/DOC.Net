@@ -1,180 +1,94 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+using System;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Duanlamchung
 {
     public partial class danhsachdatphong : Window
     {
+        private ObservableCollection<BookingRow> _all = new ObservableCollection<BookingRow>();
+        private ObservableCollection<BookingRow> _view = new ObservableCollection<BookingRow>();
+
         public danhsachdatphong()
         {
             InitializeComponent();
-            SeedData.EnsureSeed();
-            LoadBookings();
+            DgBookings.ItemsSource = _view;
+            Loaded += Danhsachdatphong_Loaded;
         }
 
-        private void LoadBookings()
+        private class BookingRow
         {
-            using (var db = new HotelManagerEntities())
+            public int Id { get; set; }
+            public string MaBooking => Id.ToString();
+            public string TenKhach { get; set; }
+            public string CCCD { get; set; }
+            public string SoPhong { get; set; }
+            public DateTime NgayCheckInRaw { get; set; }
+            public DateTime NgayCheckOutRaw { get; set; }
+            public string NgayCheckIn => NgayCheckInRaw.ToString("dd/MM/yyyy");
+            public string NgayCheckOut => NgayCheckOutRaw.ToString("dd/MM/yyyy");
+            public string TrangThai { get; set; }
+            public string TienCoc { get; set; }
+        }
+
+        private void Danhsachdatphong_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadAllBookings();
+        }
+
+        private void LoadAllBookings()
+        {
+            try
             {
-                var raw = (from b in db.bookings
-                           join c in db.customers on b.customer_id equals c.id
-                           join r in db.rooms on b.room_id equals r.id
-                           orderby b.id descending
-                           select new
-                           {
-                               b.id,
-                               c.full_name,
-                               c.identity_card,
-                               r.room_number,
-                               b.check_in_date,
-                               b.check_out_date,
-                               b.status
-                           }).ToList();
+                _all.Clear();
+                _view.Clear();
 
-                var list = raw.Select(x => new BookingListItem
+                using (var db = new HotelManagerEntities())
                 {
-                    BookingIdRaw = x.id,
-                    MaBooking = x.id.ToString(),
-                    TenKhach = x.full_name,
-                    CCCD = x.identity_card,
-                    SoPhong = x.room_number,
-                    NgayCheckIn = x.check_in_date.ToString("dd/MM/yyyy"),
-                    NgayCheckOut = x.check_out_date.ToString("dd/MM/yyyy"),
-                    TrangThai = x.status,
-                    TienCoc = "0"
-                }).ToList();
+                    var bookings = db.bookings
+                        .Include(b => b.customer)
+                        .Include(b => b.room)
+                        .Include("room.room_types")
+                        .OrderByDescending(b => b.id)
+                        .ToList();
 
-                DgBookings.ItemsSource = list;
-                TxtCount.Text = $"({list.Count} dòng)";
-            }
-        }
-
-   
-        private BookingListItem GetSelected()
-        {
-            return DgBookings.SelectedItem as BookingListItem;
-        }
-
-       
-
-        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            LoadBookings();
-        }
-
-        private void BtnSearch_Click(object sender, RoutedEventArgs e)
-        {
-            string q = (TxtSearch.Text ?? "").Trim();
-            int byIndex = CbSearchBy.SelectedIndex;
-
-            using (var db = new HotelManagerEntities())
-            {
-                var raw = (from b in db.bookings
-                           join c in db.customers on b.customer_id equals c.id
-                           join r in db.rooms on b.room_id equals r.id
-                           orderby b.id descending
-                           select new
-                           {
-                               b.id,
-                               c.full_name,
-                               c.identity_card,
-                               r.room_number,
-                               b.check_in_date,
-                               b.check_out_date,
-                               b.status
-                           }).ToList();
-
-                if (!string.IsNullOrWhiteSpace(q))
-                {
-                    raw = raw.Where(x =>
+                    foreach (var b in bookings)
                     {
-                        var key = byIndex == 1 ? (x.identity_card ?? "")
-                                : byIndex == 2 ? (x.room_number ?? "")
-                                : byIndex == 3 ? x.id.ToString()
-                                : (x.full_name ?? "");
+                        int nights = (b.check_out_date - b.check_in_date).Days;
+                        if (nights < 1) nights = 1;
 
-                        return key.IndexOf(q, StringComparison.OrdinalIgnoreCase) >= 0;
-                    }).ToList();
+                        decimal price = 0;
+                        if (b.room?.room_types != null)
+                            price = b.room.room_types.price_per_night * nights;
+
+                        var row = new BookingRow
+                        {
+                            Id = b.id,
+                            TenKhach = b.customer?.full_name ?? "",
+                            CCCD = b.customer?.identity_card ?? "",
+                            SoPhong = b.room?.room_number ?? "",
+                            NgayCheckInRaw = b.check_in_date,
+                            NgayCheckOutRaw = b.check_out_date,
+                            TrangThai = b.status ?? "N/A",
+                            TienCoc = price.ToString("N0") + " VND"
+                        };
+
+                        _all.Add(row);
+                        _view.Add(row);
+                    }
                 }
-
-                var list = raw.Select(x => new BookingListItem
-                {
-                    BookingIdRaw = x.id,
-                    MaBooking = x.id.ToString(),
-                    TenKhach = x.full_name,
-                    CCCD = x.identity_card,
-                    SoPhong = x.room_number,
-                    NgayCheckIn = x.check_in_date.ToString("dd/MM/yyyy"),
-                    NgayCheckOut = x.check_out_date.ToString("dd/MM/yyyy"),
-                    TrangThai = x.status,
-                    TienCoc = "0"
-                }).ToList();
-
-                DgBookings.ItemsSource = list;
-                TxtCount.Text = $"({list.Count} dòng)";
             }
-        }
-
-        private void BtnClearSearch_Click(object sender, RoutedEventArgs e)
-        {
-            TxtSearch.Text = "";
-            LoadBookings();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Loi load: " + ex.Message, "Loi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnApplyFilter_Click(object sender, RoutedEventArgs e)
         {
-            DateTime? from = DpFrom.SelectedDate;
-            DateTime? to = DpTo.SelectedDate;
-            string status = (CbStatus.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Tất cả";
-
-            using (var db = new HotelManagerEntities())
-            {
-                var query = from b in db.bookings
-                            join c in db.customers on b.customer_id equals c.id
-                            join r in db.rooms on b.room_id equals r.id
-                            select new { b, c, r };
-
-                if (from.HasValue)
-                    query = query.Where(x => x.b.check_in_date >= from.Value);
-
-                if (to.HasValue)
-                    query = query.Where(x => x.b.check_out_date <= to.Value.AddDays(1).AddSeconds(-1));
-
-                if (status != "Tất cả")
-                    query = query.Where(x => x.b.status == status);
-
-                var raw = query.OrderByDescending(x => x.b.id)
-                    .Select(x => new
-                    {
-                        x.b.id,
-                        x.c.full_name,
-                        x.c.identity_card,
-                        x.r.room_number,
-                        x.b.check_in_date,
-                        x.b.check_out_date,
-                        x.b.status
-                    }).ToList();
-
-                var list = raw.Select(x => new BookingListItem
-                {
-                    BookingIdRaw = x.id,
-                    MaBooking = x.id.ToString(),
-                    TenKhach = x.full_name,
-                    CCCD = x.identity_card,
-                    SoPhong = x.room_number,
-                    NgayCheckIn = x.check_in_date.ToString("dd/MM/yyyy"),
-                    NgayCheckOut = x.check_out_date.ToString("dd/MM/yyyy"),
-                    TrangThai = x.status,
-                    TienCoc = "0"
-                }).ToList();
-
-                DgBookings.ItemsSource = list;
-                TxtCount.Text = $"({list.Count} dòng)";
-            }
+            FilterData();
         }
 
         private void BtnClearFilter_Click(object sender, RoutedEventArgs e)
@@ -182,103 +96,215 @@ namespace Duanlamchung
             DpFrom.SelectedDate = null;
             DpTo.SelectedDate = null;
             CbStatus.SelectedIndex = 0;
-            LoadBookings();
+            LoadAllBookings();
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchData();
+        }
+
+        private void BtnClearSearch_Click(object sender, RoutedEventArgs e)
+        {
+            TxtSearch.Clear();
+            CbSearchBy.SelectedIndex = 0;
+            LoadAllBookings();
+        }
+
+        private void FilterData()
+        {
+            try
+            {
+                var filtered = _all.AsEnumerable();
+
+                if (DpFrom.SelectedDate.HasValue)
+                {
+                    filtered = filtered.Where(x => x.NgayCheckInRaw >= DpFrom.SelectedDate.Value);
+                }
+
+                if (DpTo.SelectedDate.HasValue)
+                {
+                    filtered = filtered.Where(x => x.NgayCheckOutRaw <= DpTo.SelectedDate.Value);
+                }
+
+                if (CbStatus.SelectedIndex > 0)
+                {
+                    string status = (CbStatus.SelectedItem as System.Windows.Controls.ComboBoxItem)?.Content.ToString();
+                    if (!string.IsNullOrEmpty(status))
+                    {
+                        filtered = filtered.Where(x => x.TrangThai.Equals(status, StringComparison.OrdinalIgnoreCase));
+                    }
+                }
+
+                _view.Clear();
+                foreach (var row in filtered)
+                {
+                    _view.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Loi filter: " + ex.Message, "Loi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SearchData()
+        {
+            try
+            {
+                string searchText = TxtSearch.Text.Trim();
+                if (string.IsNullOrEmpty(searchText))
+                {
+                    LoadAllBookings();
+                    return;
+                }
+
+                int searchBy = CbSearchBy.SelectedIndex;
+                var filtered = _all.AsEnumerable();
+
+                switch (searchBy)
+                {
+                    case 0: // Ten khach
+                        filtered = filtered.Where(x => x.TenKhach.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
+                        break;
+                    case 1: // CCCD
+                        filtered = filtered.Where(x => x.CCCD.Contains(searchText));
+                        break;
+                    case 2: // So phong
+                        filtered = filtered.Where(x => x.SoPhong.Contains(searchText));
+                        break;
+                    case 3: // Ma booking
+                        if (int.TryParse(searchText, out int id))
+                        {
+                            filtered = filtered.Where(x => x.Id == id);
+                        }
+                        break;
+                }
+
+                _view.Clear();
+                foreach (var row in filtered)
+                {
+                    _view.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Loi search: " + ex.Message, "Loi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DgBookings_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Nav.Back(this);
+            }
+            catch
+            {
+                try
+                {
+                    var dash = new DashboardLeTan();
+                    dash.Show();
+                    this.Close();
+                }
+                catch { try { Close(); } catch { } }
+            }
+        }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            LoadAllBookings();
         }
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            var sel = GetSelected();
-            if (sel == null)
+            if (DgBookings.SelectedItem is BookingRow item)
             {
-                MessageBox.Show("Chọn 1 booking trước.");
-                return;
-            }
-
-            using (var db = new HotelManagerEntities())
-            {
-                var b = db.bookings.FirstOrDefault(x => x.id == sel.BookingIdRaw);
-                if (b == null) return;
-
-               
-                if (b.status != "Pending" && b.status != "pending")
+                try
                 {
-                    MessageBox.Show("Chỉ xác nhận khi booking đang Pending.");
-                    return;
+                    using (var db = new HotelManagerEntities())
+                    {
+                        var booking = db.bookings.Find(item.Id);
+                        if (booking != null && booking.status == "Pending")
+                        {
+                            booking.status = "Confirmed";
+                            var room = db.rooms.Find(booking.room_id);
+                            if (room != null) room.status = "Occupied";
+                            db.SaveChanges();
+                            LoadAllBookings();
+                            MessageBox.Show("Da xac nhan!", "Thanh cong", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
                 }
-
-                b.status = "Confirmed";
-
-                var room = db.rooms.FirstOrDefault(x => x.id == b.room_id);
-                if (room != null && (room.status == null || room.status == "available"))
-                    room.status = "reserved";
-
-                db.SaveChanges();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Loi: " + ex.Message, "Loi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
-            LoadBookings();
-            MessageBox.Show("Đã xác nhận booking!");
+            else
+            {
+                MessageBox.Show("Chon booking!", "Thong bao", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            var sel = GetSelected();
-            if (sel == null)
+            if (DgBookings.SelectedItem is BookingRow item)
             {
-                MessageBox.Show("Chọn 1 booking trước.");
-                return;
-            }
-
-            using (var db = new HotelManagerEntities())
-            {
-                var b = db.bookings.FirstOrDefault(x => x.id == sel.BookingIdRaw);
-                if (b == null) return;
-
-           
-                if (b.status == "CheckedIn" || b.status == "checked_in")
+                var result = MessageBox.Show("Xac nhan huy?", "Xac nhan", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Booking đã check-in thì không được hủy.");
-                    return;
+                    try
+                    {
+                        using (var db = new HotelManagerEntities())
+                        {
+                            var booking = db.bookings.Find(item.Id);
+                            if (booking != null)
+                            {
+                                booking.status = "Cancelled";
+                                var room = db.rooms.Find(booking.room_id);
+                                if (room != null) room.status = "Available";
+                                db.SaveChanges();
+                                LoadAllBookings();
+                                MessageBox.Show("Da huy!", "Thanh cong", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Loi: " + ex.Message, "Loi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-
-                b.status = "Cancelled";
-
-                var room = db.rooms.FirstOrDefault(x => x.id == b.room_id);
-                if (room != null)
-                    room.status = "available";
-
-                db.SaveChanges();
             }
-
-            LoadBookings();
-            MessageBox.Show("Đã hủy booking!");
+            else
+            {
+                MessageBox.Show("Chon booking!", "Thong bao", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void BtnOpenCheckIn_Click(object sender, RoutedEventArgs e)
         {
-            var sel = GetSelected();
-            if (sel != null)
+            if (DgBookings.SelectedItem is BookingRow item)
             {
-                using (var db = new HotelManagerEntities())
+                try
                 {
-                    var b = db.bookings.FirstOrDefault(x => x.id == sel.BookingIdRaw);
-                    if (b != null && b.status != "Confirmed" && b.status != "Pending")
-                    {
-                        MessageBox.Show("Chỉ mở check-in cho booking Pending/Confirmed.");
-                        return;
-                    }
+                    var checkInOut = new CheckInOut();
+                    checkInOut.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Loi: " + ex.Message, "Loi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
-            Nav.Go(this, new CheckInOut());
-        }
-
-        private void BtnExport_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Export: demo (nếu bạn muốn xuất Excel, mình sẽ làm tiếp).");
-        }
-        private void DgBookings_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            // Nếu chưa cần xử lý gì thì để trống cũng được
+            else
+            {
+                MessageBox.Show("Chon booking!", "Thong bao", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

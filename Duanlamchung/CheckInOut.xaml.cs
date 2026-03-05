@@ -173,9 +173,17 @@ namespace Duanlamchung
             w.ShowDialog();
         }
 
+        // Back/Close: nếu có history thì quay lại (Nav.Back), nếu không thì đóng như trước
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            try
+            {
+                Nav.Back(this);
+            }
+            catch
+            {
+                try { Close(); } catch { /* best-effort */ }
+            }
         }
 
         private void ApplyFilter()

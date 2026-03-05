@@ -1,0 +1,363 @@
+﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace Duanlamchung
+{
+    public partial class DatPhong : Window
+    {
+        private int? _selectedBookingId = null;
+
+        private readonly int? _roomId;
+        private readonly DateTime? _checkIn;
+        private readonly DateTime? _checkOut;
+
+        public DatPhong()
+        {
+            InitializeComponent();
+
+            _roomId = null;
+            _checkIn = null;
+            _checkOut = null;
+
+            Loaded += DatPhong_Loaded;
+        }
+
+        // constructor để TimPhong truyền dữ liệu qua
+        public DatPhong(int roomId, DateTime checkIn, DateTime checkOut)
+        {
+            InitializeComponent();
+
+            _roomId = roomId;
+            _checkIn = checkIn;
+            _checkOut = checkOut;
+
+            Loaded += DatPhong_Loaded;
+        }
+
+        private void DatPhong_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_roomId.HasValue && _checkIn.HasValue && _checkOut.HasValue)
+            {
+                Title = "Xác nhận đặt phòng";
+                if (ActionBtn != null)
+                    ActionBtn.Content = "Xác Nhận Đặt Phòng";
+            }
+
+            LoadMyBookings();
+        }
+
+        private class BookingGridItem
+        {
+            public int ID { get; set; }
+            public string RoomName { get; set; }
+            public string CheckIn { get; set; }
+            public string CheckOut { get; set; }
+            public string Price { get; set; }
+            public string StatusText { get; set; }
+        }
+
+        private void LoadMyBookings()
+        {
+            try
+            {
+                // Nếu không có session người dùng / customer thì không load
+                if (!Session.UserId.HasValue && !Session.CustomerId.HasValue)
+                {
+                    dgBookings.ItemsSource = null;
+                    return;
+                }
+
+                using (var db = new HotelManagerEntities())
+                {
+                    customer customer = null;
+
+                    // Nếu có CustomerId (nếu hệ thống set khi login như customer), lấy trực tiếp
+                    if (Session.CustomerId.HasValue)
+                    {
+                        customer = db.customers.Find(Session.CustomerId.Value);
+                    }
+                    else if (Session.UserId.HasValue)
+                    {
+                        // nếu chỉ có UserId (user table), tìm user, rồi map sang customer theo phone/email
+                        var user = db.users.Find(Session.UserId.Value);
+                        if (user != null)
+                        {
+                            customer = db.customers.FirstOrDefault(c =>
+                                (!string.IsNullOrEmpty(user.phone) && c.phone == user.phone) ||
+                                (!string.IsNullOrEmpty(user.username) && c.email == user.username));
+                        }
+                    }
+
+                    if (customer == null)
+                    {
+                        dgBookings.ItemsSource = null;
+                        return;
+                    }
+
+                    var list = db.bookings
+                        .Where(b => b.customer_id == customer.id)
+                        .OrderByDescending(b => b.id)
+                        .ToList()
+                        .Select(b =>
+                        {
+                            int nights = (b.check_out_date - b.check_in_date).Days;
+                            if (nights < 1) nights = 1;
+
+                            decimal pricePerNight = 0;
+                            if (b.room != null && b.room.room_types != null)
+                                pricePerNight = b.room.room_types.price_per_night;
+
+                            decimal total = pricePerNight * nights;
+
+                            return new BookingGridItem
+                            {
+                                ID = b.id,
+                                RoomName = b.room != null ? b.room.room_number : "",
+                                CheckIn = b.check_in_date.ToString("dd/MM/yyyy"),
+                                CheckOut = b.check_out_date.ToString("dd/MM/yyyy"),
+                                Price = total.ToString("N0") + "đ",
+                                StatusText = MapStatusText(b.status)
+                            };
+                        })
+                        .ToList();
+
+                    dgBookings.ItemsSource = list;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách đặt phòng: " + ex.Message,
+                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private string MapStatusText(string status)
+        {
+            if (string.IsNullOrWhiteSpace(status))
+                return "Chờ xác nhận";
+
+            switch (status.Trim().ToLower())
+            {
+                case "confirmed":
+                    return "Đã xác nhận";
+                case "cancelled":
+                    return "Đã hủy";
+                case "pending":
+                    return "Chờ xác nhận";
+                default:
+                    return status;
+            }
+        }
+
+        private void btnDatPhongCuaToi_Click(object sender, RoutedEventArgs e)
+        {
+            LoadMyBookings();
+        }
+
+        private void dgBookings_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgBookings.SelectedItem == null)
+            {
+                _selectedBookingId = null;
+                return;
+            }
+
+            var row = dgBookings.SelectedItem as BookingGridItem;
+            _selectedBookingId = row != null ? row.ID : (int?)null;
+        }
+
+        // nút hủy
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (_selectedBookingId == null)
+                {
+                    MessageBox.Show("Vui lòng chọn một phòng đã đặt để hủy.",
+                        "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                var confirm = MessageBox.Show(
+                    "Bạn có chắc muốn hủy đặt phòng này không?",
+                    "Xác nhận",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                if (confirm != MessageBoxResult.Yes)
+                    return;
+
+                using (var db = new HotelManagerEntities())
+                {
+                    var booking = db.bookings.FirstOrDefault(b => b.id == _selectedBookingId.Value);
+
+                    if (booking == null)
+                    {
+                        MessageBox.Show("Không tìm thấy đặt phòng cần hủy.",
+                            "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    booking.status = "cancelled";
+                    db.SaveChanges();
+                }
+
+                MessageBox.Show("Hủy đặt phòng thành công!",
+                    "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                _selectedBookingId = null;
+                LoadMyBookings();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi hủy đặt phòng: " + ex.Message,
+                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // nút bên phải
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (_roomId.HasValue && _checkIn.HasValue && _checkOut.HasValue)
+                {
+                    ConfirmBooking();
+                    return;
+                }
+
+                if (_selectedBookingId == null)
+                {
+                    MessageBox.Show("Vui lòng chọn một đặt phòng để xem chi tiết.",
+                        "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                MessageBox.Show("Chức năng xem chi tiết / in bill sẽ làm tiếp ở bước sau.\nMã đặt phòng: " + _selectedBookingId.Value,
+                    "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi thao tác: " + ex.Message,
+                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ConfirmBooking()
+        {
+            // kiểm tra session: dùng UserId hoặc CustomerId
+            if (!Session.UserId.HasValue && !Session.CustomerId.HasValue)
+            {
+                MessageBox.Show("Bạn cần đăng nhập khách hàng trước khi đặt phòng.",
+                    "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                var login = new DangKyDangnhapKhach();
+                login.Show();
+                this.Close();
+                return;
+            }
+
+            if (_checkOut <= _checkIn)
+            {
+                MessageBox.Show("Ngày trả phòng phải lớn hơn ngày nhận phòng.",
+                    "Dữ liệu không hợp lệ", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            using (var db = new HotelManagerEntities())
+            {
+                customer customer = null;
+
+                if (Session.CustomerId.HasValue)
+                {
+                    customer = db.customers.Find(Session.CustomerId.Value);
+                }
+                else if (Session.UserId.HasValue)
+                {
+                    var user = db.users.Find(Session.UserId.Value);
+                    if (user != null)
+                    {
+                        customer = db.customers.FirstOrDefault(c =>
+                            (!string.IsNullOrEmpty(user.phone) && c.phone == user.phone) ||
+                            (!string.IsNullOrEmpty(user.username) && c.email == user.username));
+                    }
+                }
+
+                if (customer == null)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin khách hàng.",
+                        "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                var room = db.rooms.FirstOrDefault(r => r.id == _roomId.Value);
+                if (room == null)
+                {
+                    MessageBox.Show("Không tìm thấy phòng cần đặt.",
+                        "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                bool overlapped = db.bookings.Any(b =>
+                    b.room_id == room.id &&
+                    b.status != "cancelled" &&
+                    b.check_in_date < _checkOut.Value &&
+                    b.check_out_date > _checkIn.Value);
+
+                if (overlapped)
+                {
+                    MessageBox.Show("Phòng này đã có người đặt trong khoảng thời gian bạn chọn.",
+                        "Trùng lịch", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                var booking = new booking
+                {
+                    customer_id = customer.id,
+                    room_id = room.id,
+                    user_id = null,
+                    check_in_date = _checkIn.Value,
+                    check_out_date = _checkOut.Value,
+                    status = "confirmed",
+                    created_at = DateTime.Now
+                };
+
+                db.bookings.Add(booking);
+                db.SaveChanges();
+            }
+
+            MessageBox.Show("Đặt phòng thành công!",
+                "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            LoadMyBookings();
+        }
+
+        // ================= LOGOUT =================
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "Bạn có chắc muốn đăng xuất?",
+                "Xác nhận đăng xuất",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Session.Logout();
+
+                try
+                {
+                    var login = new DangKyDangnhapKhach();
+                    login.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi đăng xuất: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+    }
+}

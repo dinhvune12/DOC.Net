@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppEvents.cs" />
     <Compile Include="BillPay.xaml.cs">
       <DependentUpon>BillPay.xaml</DependentUpon>
     </Compile>
@@ -129,6 +130,7 @@
     <Compile Include="RoommapLeTan.xaml.cs">
       <DependentUpon>RoommapLeTan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RoomStatus.cs" />
     <Compile Include="room_types.cs">
       <DependentUpon>HotelManagerEntities2.tt</DependentUpon>
     </Compile>
@@ -163,7 +165,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="danhsachdatphong.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DashboardLeTan.xaml">

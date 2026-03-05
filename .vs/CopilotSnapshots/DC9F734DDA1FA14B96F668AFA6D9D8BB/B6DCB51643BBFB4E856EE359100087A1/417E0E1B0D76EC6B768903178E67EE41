@@ -1,0 +1,330 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
+
+namespace Duanlamchung
+{
+    public partial class danhsachdatphong : Window
+    {
+        private ObservableCollection<BookingRow> _all = new ObservableCollection<BookingRow>();
+        private ObservableCollection<BookingRow> _view = new ObservableCollection<BookingRow>();
+
+        public danhsachdatphong()
+        {
+            InitializeComponent();
+            DgBookings.ItemsSource = _view;
+
+            Loaded += Danhsachdatphong_Loaded;
+        }
+
+        private void Danhsachdatphong_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadAllBookings();
+        }
+
+        // View model - tên thuộc tính khớp với binding trong XAML
+        private class BookingRow
+        {
+            public int Id { get; set; }
+            public string MaBooking => Id.ToString();
+            public string TenKhach { get; set; }
+            public string CCCD { get; set; }
+            public string SoPhong { get; set; }
+            public DateTime NgayCheckInRaw { get; set; }
+            public DateTime NgayCheckOutRaw { get; set; }
+            public string NgayCheckIn => NgayCheckInRaw.ToString("dd/MM/yyyy");
+            public string NgayCheckOut => NgayCheckOutRaw.ToString("dd/MM/yyyy");
+            public string TrangThai { get; set; }
+            public string TienCoc { get; set; }
+        }
+
+        // Load all bookings from DB (eager load relations)
+        private void LoadAllBookings()
+        {
+            try
+            {
+                using (var db = new HotelManagerEntities())
+                {
+                    var raw = db.bookings
+                                .Include(b => b.customer)
+                                .Include(b => b.room)
+                                .Include("room.room_types")
+                                .OrderByDescending(b => b.id)
+                                .Select(b => new
+                                {
+                                    b.id,
+                                    CustomerName = b.customer.full_name,
+                                    CCCD = b.customer.identity_card,
+                                    RoomNumber = b.room.room_number,
+                                    b.check_in_date,
+                                    b.check_out_date,
+                                    b.status
+                                })
+                                .ToList();
+
+                    _all.Clear();
+                    foreach (var x in raw)
+                    {
+                        _all.Add(new BookingRow
+                        {
+                            Id = x.id,
+                            TenKhach = x.CustomerName ?? "(không rõ)",
+                            CCCD = x.CCCD ?? "",
+                            SoPhong = x.RoomNumber ?? "",
+                            NgayCheckInRaw = x.check_in_date,
+                            NgayCheckOutRaw = x.check_out_date,
+                            TrangThai = x.status ?? "",
+                            TienCoc = "0" // placeholder nếu bạn có trường cọc thì thay đổi ở đây
+                        });
+                    }
+                }
+
+                ApplyFilterAndSearch();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách đặt phòng: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Áp filter và tìm kiếm dựa trên controls
+        private void ApplyFilterAndSearch()
+        {
+            var data = _all.AsEnumerable();
+
+            // date range filter (check-in between from..to OR overlapping)
+            if (DpFrom.SelectedDate.HasValue)
+            {
+                var from = DpFrom.SelectedDate.Value.Date;
+                data = data.Where(x => x.NgayCheckOutRaw.Date >= from); // check-out >= from => có overlap
+            }
+            if (DpTo.SelectedDate.HasValue)
+            {
+                var to = DpTo.SelectedDate.Value.Date;
+                data = data.Where(x => x.NgayCheckInRaw.Date <= to); // check-in <= to => có overlap
+            }
+
+            // status filter
+            var statusItem = (CbStatus.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Tất cả";
+            if (!string.Equals(statusItem, "Tất cả", StringComparison.OrdinalIgnoreCase))
+            {
+                data = data.Where(x => string.Equals(x.TrangThai, statusItem, StringComparison.OrdinalIgnoreCase));
+            }
+
+            // search
+            var q = (TxtSearch.Text ?? "").Trim().ToLower();
+            if (!string.IsNullOrEmpty(q))
+            {
+                var searchBy = (CbSearchBy.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Tên khách";
+
+                switch (searchBy)
+                {
+                    case "Tên khách":
+                        data = data.Where(x => (x.TenKhach ?? "").ToLower().Contains(q));
+                        break;
+                    case "CCCD":
+                        data = data.Where(x => (x.CCCD ?? "").ToLower().Contains(q));
+                        break;
+                    case "Số phòng":
+                        data = data.Where(x => (x.SoPhong ?? "").ToLower().Contains(q));
+                        break;
+                    case "Mã booking":
+                        data = data.Where(x => x.MaBooking.ToLower().Contains(q));
+                        break;
+                    default:
+                        data = data.Where(x =>
+                            (x.TenKhach ?? "").ToLower().Contains(q) ||
+                            (x.CCCD ?? "").ToLower().Contains(q) ||
+                            (x.SoPhong ?? "").ToLower().Contains(q) ||
+                            x.MaBooking.ToLower().Contains(q));
+                        break;
+                }
+            }
+
+            // apply to view
+            _view.Clear();
+            foreach (var item in data) _view.Add(item);
+
+            TxtCount.Text = $"({_view.Count} dòng)";
+        }
+
+        // UI event handlers
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e) => LoadAllBookings();
+
+        private void BtnApplyFilter_Click(object sender, RoutedEventArgs e) => ApplyFilterAndSearch();
+
+        private void BtnClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            DpFrom.SelectedDate = null;
+            DpTo.SelectedDate = null;
+            CbStatus.SelectedIndex = 0;
+            ApplyFilterAndSearch();
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e) => ApplyFilterAndSearch();
+
+        private void BtnClearSearch_Click(object sender, RoutedEventArgs e)
+        {
+            TxtSearch.Text = "";
+            CbSearchBy.SelectedIndex = 0;
+            ApplyFilterAndSearch();
+        }
+
+        private BookingRow GetSelectedRow() => DgBookings.SelectedItem as BookingRow;
+
+        private void DgBookings_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var sel = GetSelectedRow();
+            BtnConfirm.IsEnabled = sel != null && !string.Equals(sel.TrangThai, "Confirmed", StringComparison.OrdinalIgnoreCase) && !string.Equals(sel.TrangThai, "Cancelled", StringComparison.OrdinalIgnoreCase);
+            BtnCancel.IsEnabled = sel != null && !string.Equals(sel.TrangThai, "Cancelled", StringComparison.OrdinalIgnoreCase);
+            BtnOpenCheckIn.IsEnabled = sel != null;
+        }
+
+        // Xác nhận booking (set status -> Confirmed, set phòng -> occupied)
+        private void BtnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            var sel = GetSelectedRow();
+            if (sel == null) { MessageBox.Show("Vui lòng chọn một booking."); return; }
+
+            try
+            {
+                using (var db = new HotelManagerEntities())
+                {
+                    var b = db.bookings.FirstOrDefault(x => x.id == sel.Id);
+                    if (b == null) { MessageBox.Show("Không tìm thấy booking."); return; }
+
+                    b.status = "Confirmed";
+
+                    var room = db.rooms.FirstOrDefault(r => r.id == b.room_id);
+                    if (room != null) room.status = "occupied";
+
+                    db.SaveChanges();
+                }
+
+                // notify other windows and refresh current view
+                try { AppEvents.RaiseBookingOrRoomChanged(); } catch { }
+                LoadAllBookings();
+                SelectById(sel.Id);
+                MessageBox.Show("Xác nhận thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xác nhận: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Hủy booking (set status -> Cancelled, set phòng -> available)
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            var sel = GetSelectedRow();
+            if (sel == null) { MessageBox.Show("Vui lòng chọn một booking."); return; }
+
+            var rc = MessageBox.Show("Bạn có chắc muốn hủy đặt phòng này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (rc != MessageBoxResult.Yes) return;
+
+            try
+            {
+                using (var db = new HotelManagerEntities())
+                {
+                    var b = db.bookings.FirstOrDefault(x => x.id == sel.Id);
+                    if (b == null) { MessageBox.Show("Không tìm thấy booking."); return; }
+
+                    b.status = "Cancelled";
+
+                    var room = db.rooms.FirstOrDefault(r => r.id == b.room_id);
+                    if (room != null) room.status = "available";
+
+                    db.SaveChanges();
+                }
+
+                // notify other windows and refresh current view
+                try { AppEvents.RaiseBookingOrRoomChanged(); } catch { }
+                LoadAllBookings();
+                MessageBox.Show("Hủy thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi hủy: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Mở form CheckInOut (bây giờ dùng Nav.Go để giữ lại history)
+        private void BtnOpenCheckIn_Click(object sender, RoutedEventArgs e)
+        {
+            var sel = GetSelectedRow();
+            if (sel == null) { MessageBox.Show("Vui lòng chọn một booking."); return; }
+
+            try
+            {
+                var w = new CheckInOut();
+                try
+                {
+                    Nav.Go(this, w); // sẽ push this vào lịch sử, Back sẽ quay về đây
+                }
+                catch
+                {
+                    // fallback: show và đóng hiện tại (cũ)
+                    w.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi mở Check-in: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Back button handler
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Nav.Back(this);
+            }
+            catch
+            {
+                try
+                {
+                    var dash = new DashboardLeTan();
+                    dash.Show();
+                    this.Close();
+                }
+                catch { try { Close(); } catch { } }
+            }
+        }
+
+        // helper: chọn lại theo id sau refresh
+        private void SelectById(int id)
+        {
+            var found = _view.FirstOrDefault(x => x.Id == id);
+            if (found != null)
+            {
+                DgBookings.SelectedItem = found;
+                DgBookings.ScrollIntoView(found);
+            }
+        }
+
+        // ================= WINDOW CONTROLS =================
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                try { DragMove(); } catch { }
+            }
+        }
+
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+    }
+}

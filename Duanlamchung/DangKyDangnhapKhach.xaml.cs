@@ -231,5 +231,10 @@ namespace Duanlamchung
         {
             if (e.ButtonState == MouseButtonState.Pressed) DragMove();
         }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Nav.Back(this);
+        }
     }
 }

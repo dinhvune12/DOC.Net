@@ -19,10 +19,20 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="ROOM MAP"
-                FontSize="26"
-                FontWeight="Bold"
-                VerticalAlignment="Center"/>
+            <!-- Header: thêm nút Quay lại -->
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button x:Name="BtnBack"
+                        Width="36" Height="28"
+                        Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        Content="←"
+                        ToolTip="Quay lại"
+                        Click="BtnBack_Click"/>
+                <TextBlock Text="ROOM MAP"
+                    FontSize="26"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center"/>
+            </StackPanel>
 
             <TextBlock Grid.Column="1"
                 Text="Role: Receptionist"
