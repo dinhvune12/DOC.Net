@@ -3,16 +3,100 @@
   "WorkspaceRootPath": "C:\\docnetvu\\DOC.Net\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\billpay.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\billpay.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\roommapletan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\roommapletan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\danhsachdatphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\danhsachdatphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\dashboardletan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\dashboardletan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\dangkydangnhapkhach.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\dangkydangnhapkhach.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\checkinout.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\checkinout.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\appevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\appevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\quanlydichvu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\quanlydichvu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\quanlikhachhang.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\quanlikhachhang.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\quanlytaikhoan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\quanlytaikhoan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\registercustomer.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\registercustomer.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\thongtinphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\thongtinphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\timphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\timphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\hotelmanagerentities2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\hotelmanagerentities2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\datphongletan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\datphongletan.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\datphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\datphong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\danhsachdatphong.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\danhsachdatphong.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\danhsachdatphong.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\danhsachdatphong.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\bookinglistitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\bookinglistitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\roommapletan.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\roommapletan.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|C:\\docnetvu\\DOC.Net\\duanlamchung\\roomstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\roomstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\datphongletan.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\datphongletan.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\roomstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\roomstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|c:\\docnetvu\\doc.net\\duanlamchung\\billpay.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9E6A225-008B-4A03-A99B-93D7076274ED}|Duanlamchung\\Duanlamchung.csproj|solutionrelative:duanlamchung\\billpay.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +106,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,42 +114,299 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "BillPay.xaml.cs",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\BillPay.xaml.cs",
+              "RelativeDocumentMoniker": "Duanlamchung\\BillPay.xaml.cs",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\BillPay.xaml.cs",
+              "RelativeToolTip": "Duanlamchung\\BillPay.xaml.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAIBJwK0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T07:39:18.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BillPay.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\BillPay.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\BillPay.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\BillPay.xaml",
+              "RelativeToolTip": "Duanlamchung\\BillPay.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:33:25.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DashboardLeTan.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DashboardLeTan.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\DashboardLeTan.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DashboardLeTan.xaml",
+              "RelativeToolTip": "Duanlamchung\\DashboardLeTan.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T06:49:36.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "danhsachdatphong.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\danhsachdatphong.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\danhsachdatphong.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\danhsachdatphong.xaml",
+              "RelativeToolTip": "Duanlamchung\\danhsachdatphong.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:22:03.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoommapLeTan.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoommapLeTan.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\RoommapLeTan.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoommapLeTan.xaml",
+              "RelativeToolTip": "Duanlamchung\\RoommapLeTan.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:03:31.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\App.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\App.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\App.xaml*",
+              "RelativeToolTip": "Duanlamchung\\App.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:31:26.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DangKyDangnhapKhach.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DangKyDangnhapKhach.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\DangKyDangnhapKhach.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DangKyDangnhapKhach.xaml",
+              "RelativeToolTip": "Duanlamchung\\DangKyDangnhapKhach.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:33:31.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CheckInOut.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\CheckInOut.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\CheckInOut.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\CheckInOut.xaml",
+              "RelativeToolTip": "Duanlamchung\\CheckInOut.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T06:47:23.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppEvents.cs",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\AppEvents.cs",
+              "RelativeDocumentMoniker": "Duanlamchung\\AppEvents.cs",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\AppEvents.cs",
+              "RelativeToolTip": "Duanlamchung\\AppEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T06:47:21.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TimPhong.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\TimPhong.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\TimPhong.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\TimPhong.xaml",
+              "RelativeToolTip": "Duanlamchung\\TimPhong.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:30:23.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "quanlikhachhang.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\quanlikhachhang.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\quanlikhachhang.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\quanlikhachhang.xaml",
+              "RelativeToolTip": "Duanlamchung\\quanlikhachhang.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:03:23.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Quanlydichvu.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\Quanlydichvu.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\Quanlydichvu.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\Quanlydichvu.xaml",
+              "RelativeToolTip": "Duanlamchung\\Quanlydichvu.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:03:25.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RegisterCustomer.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RegisterCustomer.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\RegisterCustomer.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RegisterCustomer.xaml",
+              "RelativeToolTip": "Duanlamchung\\RegisterCustomer.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:03:29.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Thongtinphong.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\Thongtinphong.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\Thongtinphong.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\Thongtinphong.xaml",
+              "RelativeToolTip": "Duanlamchung\\Thongtinphong.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:30:42.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Quanlytaikhoan.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\Quanlytaikhoan.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\Quanlytaikhoan.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\Quanlytaikhoan.xaml",
+              "RelativeToolTip": "Duanlamchung\\Quanlytaikhoan.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T07:03:27.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "HotelManagerEntities2.Designer.cs",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\HotelManagerEntities2.Designer.cs",
+              "RelativeDocumentMoniker": "Duanlamchung\\HotelManagerEntities2.Designer.cs",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\HotelManagerEntities2.Designer.cs",
+              "RelativeToolTip": "Duanlamchung\\HotelManagerEntities2.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T07:03:20.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "DatphongLeTan.xaml.cs",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatphongLeTan.xaml.cs",
+              "RelativeDocumentMoniker": "Duanlamchung\\DatphongLeTan.xaml.cs",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatphongLeTan.xaml.cs",
+              "RelativeToolTip": "Duanlamchung\\DatphongLeTan.xaml.cs",
+              "ViewState": "AgIAAIwBAAAAAAAAAIBJwKUBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T06:52:08.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DatphongLeTan.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatphongLeTan.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\DatphongLeTan.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatphongLeTan.xaml",
+              "RelativeToolTip": "Duanlamchung\\DatphongLeTan.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T06:52:08.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DatPhong.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatPhong.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\DatPhong.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatPhong.xaml",
+              "RelativeToolTip": "Duanlamchung\\DatPhong.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T06:49:37.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "danhsachdatphong.xaml.cs",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\danhsachdatphong.xaml.cs",
+              "RelativeDocumentMoniker": "Duanlamchung\\danhsachdatphong.xaml.cs",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\danhsachdatphong.xaml.cs",
+              "RelativeToolTip": "Duanlamchung\\danhsachdatphong.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T06:47:35.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "danhsachdatphong.xaml",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\danhsachdatphong.xaml",
+              "RelativeDocumentMoniker": "Duanlamchung\\danhsachdatphong.xaml",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\danhsachdatphong.xaml",
+              "RelativeToolTip": "Duanlamchung\\danhsachdatphong.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T06:47:34.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "BookingListItem.cs",
+              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\BookingListItem.cs",
+              "RelativeDocumentMoniker": "Duanlamchung\\BookingListItem.cs",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\BookingListItem.cs",
+              "RelativeToolTip": "Duanlamchung\\BookingListItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T06:47:22.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "RoommapLeTan.xaml.cs",
               "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoommapLeTan.xaml.cs",
               "RelativeDocumentMoniker": "Duanlamchung\\RoommapLeTan.xaml.cs",
-              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoommapLeTan.xaml.cs*",
-              "RelativeToolTip": "Duanlamchung\\RoommapLeTan.xaml.cs*",
-              "ViewState": "AgIAADgAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoommapLeTan.xaml.cs",
+              "RelativeToolTip": "Duanlamchung\\RoommapLeTan.xaml.cs",
+              "ViewState": "AgIAAOgAAAAAAAAAAADgv0QAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T01:35:38.26Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DatphongLeTan.xaml.cs",
-              "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatphongLeTan.xaml.cs",
-              "RelativeDocumentMoniker": "Duanlamchung\\DatphongLeTan.xaml.cs",
-              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\DatphongLeTan.xaml.cs*",
-              "RelativeToolTip": "Duanlamchung\\DatphongLeTan.xaml.cs*",
-              "ViewState": "AgIAAAYBAAAAAAAAAAAiwBEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T01:34:57.886Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 21,
               "Title": "RoomStatus.cs",
               "DocumentMoniker": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoomStatus.cs",
               "RelativeDocumentMoniker": "Duanlamchung\\RoomStatus.cs",
-              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoomStatus.cs*",
-              "RelativeToolTip": "Duanlamchung\\RoomStatus.cs*",
+              "ToolTip": "C:\\docnetvu\\DOC.Net\\Duanlamchung\\RoomStatus.cs",
+              "RelativeToolTip": "Duanlamchung\\RoomStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T01:34:49.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-05T01:34:49.038Z"
             }
           ]
         }

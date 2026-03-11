@@ -5,154 +5,154 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Duanlamchung"
         mc:Ignorable="d"
-        Title="Danh sach dat phong" Height="600" Width="1000"
+        Title="Danh sach dat phong" Height="638" Width="1140"
         WindowStartupLocation="CenterScreen"
         Background="#F8FAFC">
 
-    <Grid Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+	<Grid Margin="16">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 
-        <!-- HEADER -->
-        <Border Grid.Row="0" Background="White" CornerRadius="12" Padding="16" Margin="0,0,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+		<!-- HEADER -->
+		<Border Grid.Row="0" Background="White" CornerRadius="12" Padding="16" Margin="0,0,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="Danh sach dat phong" FontSize="24" FontWeight="Bold" Foreground="#0F172A"/>
-                    <TextBlock Text="Xem va quan ly cac dat phong" FontSize="12" Foreground="#64748B" Margin="0,4,0,0"/>
-                </StackPanel>
+				<StackPanel Grid.Column="0">
+					<TextBlock Text="Danh sach dat phong" FontSize="24" FontWeight="Bold" Foreground="#0F172A"/>
+					<TextBlock Text="Xem va quan ly cac dat phong" FontSize="12" Foreground="#64748B" Margin="0,4,0,0"/>
+				</StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button x:Name="BtnRefresh" Content="Lam Moi" Width="90" Height="36" Background="#2563EB" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnRefresh_Click">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="12,8">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="BtnBack" Content="Quay lai" Width="90" Height="36" Background="#F1F5F9" Foreground="#0F172A" BorderBrush="#E2E8F0" BorderThickness="1" FontWeight="SemiBold" Cursor="Hand" Click="BtnBack_Click">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8" Padding="12,8">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
+				<StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+					<Button x:Name="BtnRefresh" Content="Lam Moi" Width="90" Height="36" Background="#2563EB" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnRefresh_Click">
+						<Button.Template>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="12,8">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+							</ControlTemplate>
+						</Button.Template>
+					</Button>
+					<Button x:Name="BtnBack" Content="Quay lai" Width="90" Height="36" Background="#F1F5F9" Foreground="#0F172A" BorderBrush="#E2E8F0" BorderThickness="1" FontWeight="SemiBold" Cursor="Hand" Click="BtnBack_Click">
+						<Button.Template>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8" Padding="12,8">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+							</ControlTemplate>
+						</Button.Template>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
 
-        <!-- FILTER -->
-        <Border Grid.Row="1" Background="White" CornerRadius="12" Padding="16" Margin="0,0,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+		<!-- FILTER -->
+		<Border Grid.Row="1" Background="White" CornerRadius="12" Padding="16" Margin="0,0,0,45" BorderBrush="#E2E8F0" BorderThickness="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="140"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="140"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Tu:" Foreground="#64748B" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                <DatePicker x:Name="DpFrom" Grid.Column="1" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8"/>
+				<TextBlock Grid.Column="0" Text="Tu:" Foreground="#64748B" VerticalAlignment="Center" Margin="0,0,8,0"/>
+				<DatePicker x:Name="DpFrom" Grid.Column="1" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8"/>
 
-                <TextBlock Grid.Column="2" Text="Den:" Foreground="#64748B" VerticalAlignment="Center" Margin="12,0,8,0"/>
-                <DatePicker x:Name="DpTo" Grid.Column="3" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8"/>
+				<TextBlock Grid.Column="2" Text="Den:" Foreground="#64748B" VerticalAlignment="Center" Margin="12,0,8,0"/>
+				<DatePicker x:Name="DpTo" Grid.Column="3" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8"/>
 
-                <TextBlock Grid.Column="4" Text="Trang thai:" Foreground="#64748B" VerticalAlignment="Center" Margin="12,0,8,0"/>
-                <ComboBox x:Name="CbStatus" Grid.Column="5" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8" SelectedIndex="0">
-                    <ComboBoxItem Content="Tat ca"/>
-                    <ComboBoxItem Content="Pending"/>
-                    <ComboBoxItem Content="Confirmed"/>
-                    <ComboBoxItem Content="Cancelled"/>
-                </ComboBox>
+				<TextBlock Grid.Column="4" Text="Trang thai:" Foreground="#64748B" VerticalAlignment="Center" Margin="12,0,8,0"/>
+				<ComboBox x:Name="CbStatus" Grid.Column="5" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8" SelectedIndex="0">
+					<ComboBoxItem Content="Tat ca"/>
+					<ComboBoxItem Content="Pending"/>
+					<ComboBoxItem Content="Confirmed"/>
+					<ComboBoxItem Content="Cancelled"/>
+				</ComboBox>
 
-                <StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Right" Margin="12,0,0,0">
-                    <Button x:Name="BtnApplyFilter" Content="Ap dung" Width="80" Height="32" Background="#2563EB" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnApplyFilter_Click">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="BtnClearFilter" Content="Xoa" Width="80" Height="32" Background="#F1F5F9" Foreground="#0F172A" BorderBrush="#E2E8F0" BorderThickness="1" FontWeight="SemiBold" Cursor="Hand" Click="BtnClearFilter_Click">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
+				<StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Right" Margin="12,0,0,0">
+					<Button x:Name="BtnApplyFilter" Content="Ap dung" Width="80" Height="32" Background="#2563EB" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnApplyFilter_Click">
+						<Button.Template>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}" CornerRadius="8">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+							</ControlTemplate>
+						</Button.Template>
+					</Button>
+					<Button x:Name="BtnClearFilter" Content="Xoa" Width="80" Height="32" Background="#F1F5F9" Foreground="#0F172A" BorderBrush="#E2E8F0" BorderThickness="1" FontWeight="SemiBold" Cursor="Hand" Click="BtnClearFilter_Click">
+						<Button.Template>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+							</ControlTemplate>
+						</Button.Template>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
 
-        <!-- SEARCH -->
-        <Border Grid.Row="1" Grid.RowSpan="1" Background="White" CornerRadius="12" Padding="16" Margin="0,48,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+		<!-- SEARCH -->
+		<Border Grid.Row="1" Grid.RowSpan="1" Background="White" CornerRadius="12" Padding="16" Margin="0,93,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="140"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="200"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Tim theo:" Foreground="#64748B" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                <ComboBox x:Name="CbSearchBy" Grid.Column="1" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8" SelectedIndex="0">
-                    <ComboBoxItem Content="Ten khach"/>
-                    <ComboBoxItem Content="CCCD"/>
-                    <ComboBoxItem Content="So phong"/>
-                    <ComboBoxItem Content="Ma booking"/>
-                </ComboBox>
+				<TextBlock Grid.Column="0" Text="Tim theo:" Foreground="#64748B" VerticalAlignment="Center" Margin="0,0,8,0"/>
+				<ComboBox x:Name="CbSearchBy" Grid.Column="1" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8" SelectedIndex="0">
+					<ComboBoxItem Content="Ten khach"/>
+					<ComboBoxItem Content="CCCD"/>
+					<ComboBoxItem Content="So phong"/>
+					<ComboBoxItem Content="Ma booking"/>
+				</ComboBox>
 
-                <TextBlock Grid.Column="2" Text="Noi dung:" Foreground="#64748B" VerticalAlignment="Center" Margin="12,0,8,0"/>
-                <TextBox x:Name="TxtSearch" Grid.Column="3" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8,0" VerticalContentAlignment="Center"/>
+				<TextBlock Grid.Column="2" Text="Noi dung:" Foreground="#64748B" VerticalAlignment="Center" Margin="12,0,8,0"/>
+				<TextBox x:Name="TxtSearch" Grid.Column="3" Height="32" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8,0" VerticalContentAlignment="Center"/>
 
-                <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="12,0,0,0">
-                    <Button x:Name="BtnSearch" Content="Tim" Width="80" Height="32" Background="#2563EB" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnSearch_Click">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="BtnClearSearch" Content="Xoa" Width="80" Height="32" Background="#F1F5F9" Foreground="#0F172A" BorderBrush="#E2E8F0" BorderThickness="1" FontWeight="SemiBold" Cursor="Hand" Click="BtnClearSearch_Click">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
+				<StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="12,0,0,0">
+					<Button x:Name="BtnSearch" Content="Tim" Width="80" Height="32" Background="#2563EB" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnSearch_Click">
+						<Button.Template>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}" CornerRadius="8">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+							</ControlTemplate>
+						</Button.Template>
+					</Button>
+					<Button x:Name="BtnClearSearch" Content="Xoa" Width="80" Height="32" Background="#F1F5F9" Foreground="#0F172A" BorderBrush="#E2E8F0" BorderThickness="1" FontWeight="SemiBold" Cursor="Hand" Click="BtnClearSearch_Click">
+						<Button.Template>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+							</ControlTemplate>
+						</Button.Template>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
 
-        <!-- DATAGRID -->
-        <Border Grid.Row="2" Background="White" CornerRadius="12" Padding="8" Margin="0,0,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
-            <DataGrid x:Name="DgBookings"
+		<!-- DATAGRID -->
+		<Border Grid.Row="2" Background="White" CornerRadius="12" Padding="8" Margin="0,0,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
+			<DataGrid x:Name="DgBookings"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       SelectionMode="Single"
@@ -164,74 +164,74 @@
                       AlternationCount="2"
                       SelectionChanged="DgBookings_SelectionChanged">
 
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="#64748B"/>
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                        <Setter Property="Padding" Value="12,0,12,12"/>
-                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                        <Setter Property="BorderBrush" Value="#E2E8F0"/>
-                        <Setter Property="FontSize" Value="12"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
+				<DataGrid.ColumnHeaderStyle>
+					<Style TargetType="DataGridColumnHeader">
+						<Setter Property="Background" Value="Transparent"/>
+						<Setter Property="Foreground" Value="#64748B"/>
+						<Setter Property="FontWeight" Value="SemiBold"/>
+						<Setter Property="Padding" Value="12,0,12,12"/>
+						<Setter Property="BorderThickness" Value="0,0,0,1"/>
+						<Setter Property="BorderBrush" Value="#E2E8F0"/>
+						<Setter Property="FontSize" Value="12"/>
+					</Style>
+				</DataGrid.ColumnHeaderStyle>
 
-                <DataGrid.Resources>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Background" Value="White"/>
-                        <Style.Triggers>
-                            <Trigger Property="AlternationIndex" Value="1">
-                                <Setter Property="Background" Value="#F9FAFB"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#DBEAFE"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.Resources>
+				<DataGrid.Resources>
+					<Style TargetType="DataGridRow">
+						<Setter Property="Background" Value="White"/>
+						<Style.Triggers>
+							<Trigger Property="AlternationIndex" Value="1">
+								<Setter Property="Background" Value="#F9FAFB"/>
+							</Trigger>
+							<Trigger Property="IsSelected" Value="True">
+								<Setter Property="Background" Value="#DBEAFE"/>
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</DataGrid.Resources>
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Ma Booking" Binding="{Binding MaBooking}" Width="80"/>
-                    <DataGridTextColumn Header="Khach Hang" Binding="{Binding TenKhach}" Width="150"/>
-                    <DataGridTextColumn Header="CCCD" Binding="{Binding CCCD}" Width="110"/>
-                    <DataGridTextColumn Header="Phong" Binding="{Binding SoPhong}" Width="70"/>
-                    <DataGridTextColumn Header="Check-in" Binding="{Binding NgayCheckIn}" Width="110"/>
-                    <DataGridTextColumn Header="Check-out" Binding="{Binding NgayCheckOut}" Width="110"/>
-                    <DataGridTextColumn Header="Trang Thai" Binding="{Binding TrangThai}" Width="100"/>
-                    <DataGridTextColumn Header="Tong Tien" Binding="{Binding TienCoc}" Width="110"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Ma Booking" Binding="{Binding MaBooking}" Width="80"/>
+					<DataGridTextColumn Header="Khach Hang" Binding="{Binding TenKhach}" Width="150"/>
+					<DataGridTextColumn Header="CCCD" Binding="{Binding CCCD}" Width="110"/>
+					<DataGridTextColumn Header="Phong" Binding="{Binding SoPhong}" Width="70"/>
+					<DataGridTextColumn Header="Check-in" Binding="{Binding NgayCheckIn}" Width="110"/>
+					<DataGridTextColumn Header="Check-out" Binding="{Binding NgayCheckOut}" Width="110"/>
+					<DataGridTextColumn Header="Trang Thai" Binding="{Binding TrangThai}" Width="100"/>
+					<DataGridTextColumn Header="Tong Tien" Binding="{Binding TienCoc}" Width="110"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Border>
 
-        <!-- BUTTONS -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,0">
-            <Button x:Name="BtnConfirm" Content="Xac nhan" Width="100" Height="40" Background="#059669" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnConfirm_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button x:Name="BtnCancel" Content="Huy" Width="100" Height="40" Background="#DC2626" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnCancel_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button x:Name="BtnOpenCheckIn" Content="Check-in" Width="100" Height="40" Background="#F59E0B" Foreground="White" FontWeight="SemiBold" Cursor="Hand" Click="BtnOpenCheckIn_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </StackPanel>
-    </Grid>
+		<!-- BUTTONS -->
+		<StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,0">
+			<Button x:Name="BtnConfirm" Content="Xac nhan" Width="100" Height="40" Background="#059669" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnConfirm_Click">
+				<Button.Template>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}" CornerRadius="8">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+			<Button x:Name="BtnCancel" Content="Huy" Width="100" Height="40" Background="#DC2626" Foreground="White" FontWeight="SemiBold" Margin="0,0,8,0" Cursor="Hand" Click="BtnCancel_Click">
+				<Button.Template>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}" CornerRadius="8">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+			<Button x:Name="BtnOpenCheckIn" Content="Check-in" Width="100" Height="40" Background="#F59E0B" Foreground="White" FontWeight="SemiBold" Cursor="Hand" Click="BtnOpenCheckIn_Click">
+				<Button.Template>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}" CornerRadius="8">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+		</StackPanel>
+	</Grid>
 </Window>

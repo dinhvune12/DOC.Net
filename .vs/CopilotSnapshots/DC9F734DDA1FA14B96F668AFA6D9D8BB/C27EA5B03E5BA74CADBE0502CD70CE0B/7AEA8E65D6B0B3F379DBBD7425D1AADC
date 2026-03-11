@@ -1,0 +1,404 @@
+﻿<Window x:Class="Duanlamchung.DatphongLeTan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tao / Quan ly Dat Phong"
+        Height="680"
+        Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="#F8FAFC">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Border Grid.Row="0" Background="White" CornerRadius="12" Padding="16" Margin="0,0,0,12" BorderBrush="#E2E8F0" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Tao / Quan ly Dat Phong" FontSize="24" FontWeight="Bold" Foreground="#0F172A"/>
+                    <TextBlock Text="Them moi hoac chinh sua thong tin dat phong cua khach hang" FontSize="12" Foreground="#64748B" Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnBack"
+                            Width="90" Height="36"
+                            Background="#F1F5F9"
+                            Foreground="#0F172A"
+                            BorderBrush="#E2E8F0"
+                            BorderThickness="1"
+                            Content="Quay lai"
+                            FontWeight="SemiBold"
+                            Margin="0,0,8,0"
+                            Cursor="Hand"
+                            Click="BtnBack_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8" Padding="12,8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT: CUSTOMER INFORMATION -->
+            <Border Grid.Column="0" Background="White" CornerRadius="12" Padding="16" Margin="0,0,8,0" BorderBrush="#E2E8F0" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Thong tin khach hang" FontSize="13" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,12"/>
+
+                    <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                        <TextBlock Text="Ho ten" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBox x:Name="txtFullName"
+                                 Height="32"
+                                 Background="#F8FAFC"
+                                 BorderBrush="#E2E8F0"
+                                 BorderThickness="1"
+                                 Padding="8,0"
+                                 VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Margin="0,0,0,10">
+                        <TextBlock Text="So dien thoai" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBox x:Name="txtPhone"
+                                 Height="32"
+                                 Background="#F8FAFC"
+                                 BorderBrush="#E2E8F0"
+                                 BorderThickness="1"
+                                 Padding="8,0"
+                                 VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Margin="0,0,0,10">
+                        <TextBlock Text="CCCD / Ho chieu" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBox x:Name="txtIDPassport"
+                                 Height="32"
+                                 Background="#F8FAFC"
+                                 BorderBrush="#E2E8F0"
+                                 BorderThickness="1"
+                                 Padding="8,0"
+                                 VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4" Margin="0,0,0,0">
+                        <TextBlock Text="Ghi chu" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBox x:Name="txtNote"
+                                 Height="70"
+                                 Background="#F8FAFC"
+                                 BorderBrush="#E2E8F0"
+                                 BorderThickness="1"
+                                 Padding="8,4"
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- RIGHT: BOOKING INFORMATION -->
+            <Border Grid.Column="1" Background="White" CornerRadius="12" Padding="16" Margin="8,0,0,0" BorderBrush="#E2E8F0" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Thong tin dat phong" FontSize="13" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,12"/>
+
+                    <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                        <TextBlock Text="Loai phong" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="cbRoomType"
+                                  Height="32"
+                                  Background="#F8FAFC"
+                                  BorderBrush="#E2E8F0"
+                                  BorderThickness="1"
+                                  Padding="8,4"
+                                  SelectionChanged="DataChanged">
+                            <ComboBoxItem Content="Standard"/>
+                            <ComboBoxItem Content="Deluxe"/>
+                            <ComboBoxItem Content="VIP"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Margin="0,0,0,10">
+                        <TextBlock Text="So phong" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="cbRoomNumber"
+                                  Height="32"
+                                  Background="#F8FAFC"
+                                  BorderBrush="#E2E8F0"
+                                  BorderThickness="1"
+                                  Padding="8,4">
+                            <ComboBoxItem Content="101"/>
+                            <ComboBoxItem Content="102"/>
+                            <ComboBoxItem Content="201"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Margin="0,0,0,10">
+                        <TextBlock Text="Check-in" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <DatePicker x:Name="dpCheckIn"
+                                    Height="32"
+                                    Background="#F8FAFC"
+                                    BorderBrush="#E2E8F0"
+                                    BorderThickness="1"
+                                    Padding="8,4"
+                                    SelectedDateChanged="DataChanged"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4" Margin="0,0,0,10">
+                        <TextBlock Text="Check-out" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <DatePicker x:Name="dpCheckOut"
+                                    Height="32"
+                                    Background="#F8FAFC"
+                                    BorderBrush="#E2E8F0"
+                                    BorderThickness="1"
+                                    Padding="8,4"
+                                    SelectedDateChanged="DataChanged"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Margin="0,0,0,0">
+                        <TextBlock Text="Trang thai" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="cbStatus"
+                                  Height="32"
+                                  Background="#F8FAFC"
+                                  BorderBrush="#E2E8F0"
+                                  BorderThickness="1"
+                                  Padding="8,4">
+                            <ComboBoxItem Content="Pending"/>
+                            <ComboBoxItem Content="Confirmed"/>
+                            <ComboBoxItem Content="Checked In"/>
+                            <ComboBoxItem Content="Cancelled"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- TOTAL PRICE + BUTTONS -->
+        <Border Grid.Row="2" Background="White" CornerRadius="12" Padding="16" BorderBrush="#E2E8F0" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- TOTAL PRICE -->
+                <Border Grid.Column="0"
+                        Background="#EEF2FF"
+                        CornerRadius="8"
+                        Padding="12,8"
+                        BorderBrush="#BFDBFE"
+                        BorderThickness="1"
+                        HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Tong tien:" FontSize="12" Foreground="#64748B" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox x:Name="txtTotalPrice"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Text="0"
+                                 IsReadOnly="True"
+                                 FontSize="16"
+                                 FontWeight="Bold"
+                                 Foreground="#2563EB"
+                                 Width="120"
+                                 TextAlignment="Right"
+                                 VerticalContentAlignment="Center"/>
+                        <TextBlock Text=" VND" FontSize="12" Foreground="#64748B" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- BUTTONS -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="btnCreate"
+                            Content="Tao moi"
+                            Background="#2563EB"
+                            Foreground="White"
+                            Width="100"
+                            Height="40"
+                            FontWeight="SemiBold"
+                            Margin="0,0,8,0"
+                            Cursor="Hand"
+                            Click="btnCreate_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="12,8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btnUpdate"
+                            Content="Cap nhat"
+                            Background="#059669"
+                            Foreground="White"
+                            Width="100"
+                            Height="40"
+                            FontWeight="SemiBold"
+                            Margin="0,0,8,0"
+                            Cursor="Hand"
+                            Click="btnUpdate_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="12,8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btnCancelBooking"
+                            Content="Huy"
+                            Background="#DC2626"
+                            Foreground="White"
+                            Width="100"
+                            Height="40"
+                            FontWeight="SemiBold"
+                            Margin="0,0,8,0"
+                            Cursor="Hand"
+                            Click="btnCancelBooking_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="12,8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btnConfirmCheckIn"
+                            Content="Check-in"
+                            Background="#F59E0B"
+                            Foreground="White"
+                            Width="100"
+                            Height="40"
+                            FontWeight="SemiBold"
+                            Cursor="Hand"
+                            Click="btnConfirmCheckIn_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="12,8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Grid Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="BOOKING MANAGEMENT"
+                       FontSize="26"
+                       FontWeight="Bold"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="Role: Receptionist"
+                       Foreground="Gray"
+                       VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
+            <Button x:Name="BtnBack"
+                    Width="36" Height="28"
+                    Margin="0,0,8,0"
+                    VerticalAlignment="Center"
+                    Content="?"
+                    ToolTip="Quay l?i"
+                    Click="BtnBack_Click"/>
+            <TextBlock Text="Create / Manage Booking" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- CONTENT -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition Width="1.7*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- CUSTOMER -->
+            <GroupBox Header="Customer Information"
+                      FontWeight="Bold"
+                      Margin="0,0,20,0">
+
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Full Name:"/>
+                    <TextBox x:Name="txtFullName"
+                             Grid.Column="1"
+                             Margin="5"/>
+
+                    <TextBlock Text="Phone:" Grid.Row="1"/>
+                    <TextBox x:Name="txtPhone"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="5"/>
+
+                    <TextBlock Text="ID / Passport:" Grid.Row="2"/>
+                    <TextBox x:Name="txtIDPassport"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             Margin="5"/>
+
+                    <TextBlock Text="Note:" Grid.Row="3"/>
+                    <TextBox x:Name="txtNote"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

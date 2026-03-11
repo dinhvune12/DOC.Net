@@ -1,0 +1,239 @@
+﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+
+namespace Duanlamchung
+{
+    public partial class RoommapLeTan : Window
+    {
+        public RoommapLeTan()
+        {
+            InitializeComponent();
+
+            Loaded += RoommapLeTan_Loaded;
+            // subscribe to app-level changes
+            AppEvents.BookingOrRoomChanged += OnBookingOrRoomChanged;
+            Closed += (s, e) => AppEvents.BookingOrRoomChanged -= OnBookingOrRoomChanged;
+        }
+
+        private void RoommapLeTan_Loaded(object sender, RoutedEventArgs e)
+        {
+            RefreshRoomMap();
+        }
+
+        private void OnBookingOrRoomChanged()
+        {
+            // update on UI thread
+            Dispatcher.BeginInvoke(new Action(RefreshRoomMap));
+        }
+
+        // utility: tìm con kiểu T trong visual tree
+        private T FindChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            if (parent == null) return null;
+            int count = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < count; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T t) return t;
+                var found = FindChild<T>(child);
+                if (found != null) return found;
+            }
+            return null;
+        }
+
+        // Read rooms from DB and update UI elements
+        private void RefreshRoomMap()
+        {
+            try
+            {
+                using (var db = new HotelManagerEntities())
+                {
+                    var rooms = db.rooms.ToList()
+                        .ToDictionary(r => (r.room_number ?? "").Trim(), r => (r.status ?? "").Trim().ToLowerInvariant());
+
+                    void Apply(string roomNumber, TextBlock statusText, Border bd)
+                    {
+                        if (!rooms.TryGetValue(roomNumber, out var s)) s = "unknown";
+
+                        switch (s)
+                        {
+                            case "available":
+                                statusText.Text = "Available";
+                                statusText.Foreground = Brushes.Green;
+                                bd.Background = new SolidColorBrush(Color.FromRgb(200, 230, 201));
+                                break;
+                            case "occupied":
+                                statusText.Text = "Occupied";
+                                statusText.Foreground = Brushes.Red;
+                                bd.Background = new SolidColorBrush(Color.FromRgb(255, 205, 210));
+                                break;
+                            case "cleaning":
+                                statusText.Text = "Cleaning";
+                                statusText.Foreground = Brushes.Orange;
+                                bd.Background = new SolidColorBrush(Color.FromRgb(255, 249, 196));
+                                break;
+                            case "maintenance":
+                                statusText.Text = "Maintenance";
+                                statusText.Foreground = Brushes.Gray;
+                                bd.Background = new SolidColorBrush(Color.FromRgb(224, 224, 224));
+                                break;
+                            default:
+                                statusText.Text = string.IsNullOrWhiteSpace(s) ? "Unknown" : s;
+                                statusText.Foreground = Brushes.Gray;
+                                bd.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+                                break;
+                        }
+
+                        // find the first Button descendant inside this Border (action button)
+                        var actionBtn = FindChild<Button>(bd);
+                        if (actionBtn != null)
+                        {
+                            // enable only when room is available (you can adjust rules for View/Update)
+                            actionBtn.IsEnabled = s == "available";
+                            // optionally change tooltip to explain
+                            actionBtn.ToolTip = s == "available" ? null : "Room not available";
+                        }
+                    }
+
+                    // apply for each room control present in XAML
+                    Apply("101", txtStatus101, bd101);
+                    Apply("102", txtStatus102, bd102);
+                    Apply("103", txtStatus103, bd103);
+                    Apply("104", txtStatus104, bd104);
+                    Apply("105", txtStatus105, bd105);
+                    Apply("106", txtStatus106, bd106);
+                    Apply("107", txtStatus107, bd107);
+                    Apply("108", txtStatus108, bd108);
+                    Apply("109", txtStatus109, bd109);
+                    Apply("110", txtStatus110, bd110);
+                    Apply("111", txtStatus111, bd111);
+                    Apply("112", txtStatus112, bd112);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải trạng thái phòng: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Helper: tìm phòng theo Tag (hỗ trợ cả id và room_number)
+        private room FindRoomByTag(object tag, HotelManagerEntities db)
+        {
+            if (tag == null) return null;
+
+            // nếu tag là int hoặc chuỗi số -> thử tìm theo id
+            int id;
+            if (tag is int)
+            {
+                id = (int)tag;
+                return db.rooms.FirstOrDefault(r => r.id == id);
+            }
+
+            var tagStr = tag.ToString().Trim();
+
+            if (int.TryParse(tagStr, out id))
+            {
+                var byId = db.rooms.FirstOrDefault(r => r.id == id);
+                if (byId != null) return byId;
+            }
+
+            // fallback: tìm theo room_number
+            return db.rooms.FirstOrDefault(r => (r.room_number ?? "").Trim().Equals(tagStr, StringComparison.OrdinalIgnoreCase));
+        }
+
+        // ================= BOOK ROOM =================
+        private void BookRoom_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn == null) return;
+
+            using (var db = new HotelManagerEntities())
+            {
+                var room = FindRoomByTag(btn.Tag, db);
+                if (room == null)
+                {
+                    MessageBox.Show("Room not found!");
+                    return;
+                }
+
+                var status = (room.status ?? "").Trim().ToLowerInvariant();
+                if (status != "available")
+                {
+                    MessageBox.Show("Phòng không khả dụng!");
+                    return;
+                }
+
+                // open booking form via Nav (keeps history)
+                var booking = new DatphongLeTan(room.id);
+                try { Nav.Go(this, booking); } catch { booking.Show(); this.Close(); }
+            }
+        }
+
+        // ================= VIEW ROOM =================
+        private void ViewRoom_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn == null) return;
+
+            using (var db = new HotelManagerEntities())
+            {
+                var room = FindRoomByTag(btn.Tag, db);
+                if (room == null)
+                {
+                    MessageBox.Show("Room not found!");
+                    return;
+                }
+
+                MessageBox.Show(
+                    $"Room: {room.room_number}\nStatus: {room.status}\nPrice: {room.room_types?.price_per_night} VND",
+                    "Room Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        // ================= UPDATE ROOM STATUS =================
+        private void UpdateRoom_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn == null) return;
+
+            using (var db = new HotelManagerEntities())
+            {
+                var room = FindRoomByTag(btn.Tag, db);
+                if (room == null)
+                {
+                    MessageBox.Show("Room not found!");
+                    return;
+                }
+
+                var status = (room.status ?? "").Trim().ToLowerInvariant();
+                if (status == "cleaning" || status == "maintenance")
+                    room.status = "available";
+                else
+                    room.status = "cleaning";
+
+                db.SaveChanges();
+            }
+
+            // Refresh UI after change
+            RefreshRoomMap();
+
+            // Notify others
+            try { AppEvents.RaiseBookingOrRoomChanged(); } catch { }
+        }
+
+        // ================= BACK =================
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            try { Nav.Back(this); }
+            catch
+            {
+                var dash = new DashboardLeTan();
+                dash.Show();
+                this.Close();
+            }
+        }
+    }
+}

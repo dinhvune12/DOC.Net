@@ -1,0 +1,186 @@
+﻿<Window x:Class="Duanlamchung.CheckInOut"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Duanlamchung"
+        mc:Ignorable="d"
+        Title="Check-in / Check-out" Height="520" Width="980"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#F3F4F6" CornerRadius="10" Padding="12" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Quản lý Check-in / Check-out" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="Chọn một booking bên dưới để thao tác." Foreground="Gray" Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Lọc:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <ComboBox x:Name="cbFilter" Width="180" Height="28" SelectedIndex="0"
+                              SelectionChanged="cbFilter_SelectionChanged">
+                        <ComboBoxItem Content="Tất cả"/>
+                        <ComboBoxItem Content="Chờ check-in (Pending/Confirmed)"/>
+                        <ComboBoxItem Content="Đang ở (CheckedIn)"/>
+                        <ComboBoxItem Content="Đã check-out (CheckedOut)"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Body -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.2*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1.3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: bookings list -->
+            <Border Grid.Column="0" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="10" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0" Margin="0,0,0,8">
+                        <TextBlock Text="Danh sách booking" FontWeight="Bold" FontSize="14" DockPanel.Dock="Left"/>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                            <TextBlock Text="Tìm:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBox x:Name="txtSearch" Width="220" Height="28" TextChanged="txtSearch_TextChanged"
+                                     ToolTip="Nhập mã booking / tên khách / số phòng"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <DataGrid x:Name="dgBookings"
+                              Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              SelectionChanged="dgBookings_SelectionChanged"
+                              RowHeight="30"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="Horizontal">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mã" Binding="{Binding BookingId}" Width="90"/>
+                            <DataGridTextColumn Header="Khách" Binding="{Binding CustomerName}" Width="*"/>
+                            <DataGridTextColumn Header="Phòng" Binding="{Binding RoomNo}" Width="80"/>
+                            <DataGridTextColumn Header="Loại" Binding="{Binding RoomType}" Width="100"/>
+                            <DataGridTextColumn Header="Nhận" Binding="{Binding CheckInDate}" Width="110"/>
+                            <DataGridTextColumn Header="Trả" Binding="{Binding CheckOutDate}" Width="110"/>
+                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="140"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Right: detail -->
+            <Border Grid.Column="2" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="10" Padding="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Thông tin chi tiết" FontWeight="Bold" FontSize="14"/>
+
+                    <Grid Grid.Row="1" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Mã booking:" Foreground="Gray"/>
+                        <TextBlock x:Name="txtBookingId" Grid.Column="1" FontWeight="SemiBold"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Khách:" Foreground="Gray"/>
+                        <TextBlock x:Name="txtCustomer" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Phòng:" Foreground="Gray"/>
+                        <TextBlock x:Name="txtRoom" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Grid.Row="4" Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Thời gian:" Foreground="Gray"/>
+                        <TextBlock x:Name="txtDateRange" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Grid.Row="5" Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Trạng thái:" Foreground="Gray"/>
+                        <TextBlock x:Name="txtStatus" Grid.Column="1" FontWeight="SemiBold"/>
+                    </Grid>
+
+                    <Border Grid.Row="6" Margin="0,12,0,0" Padding="10" CornerRadius="10" Background="#F9FAFB">
+                        <StackPanel>
+                            <TextBlock Text="Ghi chú nhanh:" Foreground="Gray"/>
+                            <TextBox x:Name="txtNote" Height="70" TextWrapping="Wrap" AcceptsReturn="True"
+                                     VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Footer buttons -->
+        <Border Grid.Row="2" Margin="0,10,0,0" Background="#F3F4F6" CornerRadius="10" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="txtHint" VerticalAlignment="Center" Foreground="Gray"
+                           Text="Tip: Chọn booking rồi bấm Check-in / Hóa đơn / Check-out."/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="btnCheckIn" Content="Check-in" Width="110" Height="34" Margin="0,0,8,0"
+                            Click="btnCheckIn_Click"/>
+                    <Button x:Name="btnInvoice" Content="Hóa đơn" Width="110" Height="34" Margin="0,0,8,0"
+                            Click="btnInvoice_Click"/>
+                    <Button x:Name="btnCheckOut" Content="Check-out" Width="110" Height="34" Margin="0,0,8,0"
+                            Click="btnCheckOut_Click"/>
+                    <Button Content="Đóng" Width="90" Height="34" Click="btnClose_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

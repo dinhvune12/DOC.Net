@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +21,8 @@ namespace Duanlamchung
 
             try
             {
-                // Load and wire events safely; nếu control null, bỏ qua
-                try { LoadRooms(); } catch (Exception ex) { MessageBox.Show("Lỗi khi load danh sách phòng: " + ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error); }
+                // Load and wire events safely; n?u control null, b? qua
+                try { LoadRooms(); } catch (Exception ex) { MessageBox.Show("L?i khi load danh s�ch ph�ng: " + ex.ToString(), "L?i", MessageBoxButton.OK, MessageBoxImage.Error); }
 
                 if (dpCheckIn != null)
                     dpCheckIn.SelectedDateChanged += (s, e) => CalculateTotalPrice();
@@ -31,7 +31,7 @@ namespace Duanlamchung
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi khởi tạo form đặt phòng: " + ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("L?i khi kh?i t?o form d?t ph�ng: " + ex.ToString(), "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Duanlamchung
 
             try
             {
-                try { LoadRooms(); } catch (Exception ex) { MessageBox.Show("Lỗi khi load danh sách phòng: " + ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error); }
+                try { LoadRooms(); } catch (Exception ex) { MessageBox.Show("L?i khi load danh s�ch ph�ng: " + ex.ToString(), "L?i", MessageBoxButton.OK, MessageBoxImage.Error); }
 
                 if (dpCheckIn != null)
                     dpCheckIn.SelectedDateChanged += (s, e) => CalculateTotalPrice();
@@ -54,7 +54,7 @@ namespace Duanlamchung
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi khởi tạo form đặt phòng (with roomId): " + ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("L?i khi kh?i t?o form d?t ph�ng (with roomId): " + ex.ToString(), "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -63,23 +63,23 @@ namespace Duanlamchung
         {
             try
             {
-                // Lấy danh sách phòng từ DB
+                // L?y danh s�ch ph�ng t? DB
                 var rooms = db.rooms.ToList();
 
                 if (cbRoomNumber == null)
                     return;
 
-                // Nếu Items đã có phần tử, clear trước khi gán ItemsSource
-                // (tránh lỗi: "Items collection must be empty before using ItemsSource")
+                // N?u Items d� c� ph?n t?, clear tru?c khi g�n ItemsSource
+                // (tr�nh l?i: "Items collection must be empty before using ItemsSource")
                 if (cbRoomNumber.Items != null && cbRoomNumber.Items.Count > 0)
                     cbRoomNumber.Items.Clear();
 
-                // Gán ItemsSource (an toàn)
+                // G�n ItemsSource (an to�n)
                 cbRoomNumber.ItemsSource = rooms;
                 cbRoomNumber.DisplayMemberPath = "room_number";
                 cbRoomNumber.SelectedValuePath = "id";
 
-                // Nếu form được khởi tạo với roomId, chọn giá trị tương ứng
+                // N?u form du?c kh?i t?o v?i roomId, ch?n gi� tr? tuong ?ng
                 if (selectedRoomId > 0)
                 {
                     try
@@ -94,9 +94,9 @@ namespace Duanlamchung
             }
             catch (InvalidOperationException iex)
             {
-                // Thêm thông báo rõ ràng cho developer debug
-                MessageBox.Show("Lỗi khi gán ItemsSource cho cbRoomNumber: " + iex.Message,
-                                "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Th�m th�ng b�o r� r�ng cho developer debug
+                MessageBox.Show("L?i khi g�n ItemsSource cho cbRoomNumber: " + iex.Message,
+                                "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
                 // fallback: clear items and retry once
                 try
                 {
@@ -107,14 +107,14 @@ namespace Duanlamchung
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể load danh sách phòng: " + ex.ToString(),
-                                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Kh�ng th? load danh s�ch ph�ng: " + ex.ToString(),
+                                    "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi load danh sách phòng: " + ex.ToString(),
-                                "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("L?i khi load danh s�ch ph�ng: " + ex.ToString(),
+                                "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -123,7 +123,7 @@ namespace Duanlamchung
         {
             if (!ValidateInput()) return;
 
-            // Check for double-booking: phòng đã được đặt trong khoảng thời gian này?
+            // Check for double-booking: ph�ng d� du?c d?t trong kho?ng th?i gian n�y?
             var roomId = (int)cbRoomNumber.SelectedValue;
             var checkInDate = dpCheckIn.SelectedDate.Value;
             var checkOutDate = dpCheckOut.SelectedDate.Value;
@@ -137,8 +137,8 @@ namespace Duanlamchung
 
             if (conflictingBookings.Count > 0)
             {
-                MessageBox.Show("Phòng này đã có booking trong khoảng thời gian này. Vui lòng chọn phòng hoặc ngày khác.",
-                                "Lỗi Double-Booking", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Ph�ng n�y d� c� booking trong kho?ng th?i gian n�y. Vui l�ng ch?n ph�ng ho?c ng�y kh�c.",
+                                "L?i Double-Booking", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -196,7 +196,7 @@ namespace Duanlamchung
                 return;
             }
 
-            // Re-fetch từ DB để ensure nó được tracked
+            // Re-fetch t? DB d? ensure n� du?c tracked
             var booking = db.bookings.Find(selectedBooking.id);
             if (booking == null)
             {
@@ -208,7 +208,7 @@ namespace Duanlamchung
             booking.check_out_date = dpCheckOut.SelectedDate.Value;
             booking.status = ((ComboBoxItem)cbStatus.SelectedItem)?.Content.ToString();
 
-            // cập nhật trạng thái phòng tương ứng khi thay đổi đặt phòng
+            // c?p nh?t tr?ng th�i ph�ng tuong ?ng khi thay d?i d?t ph�ng
             var room = db.rooms.Find(booking.room_id);
             if (room != null)
             {
@@ -240,7 +240,7 @@ namespace Duanlamchung
                 return;
             }
 
-            // Re-fetch từ DB để ensure nó được tracked
+            // Re-fetch t? DB d? ensure n� du?c tracked
             var booking = db.bookings.Find(selectedBooking.id);
             if (booking == null)
             {
@@ -275,7 +275,7 @@ namespace Duanlamchung
                 return;
             }
 
-            // Re-fetch từ DB để ensure nó được tracked
+            // Re-fetch t? DB d? ensure n� du?c tracked
             var booking = db.bookings.Find(selectedBooking.id);
             if (booking == null)
             {
@@ -381,12 +381,12 @@ namespace Duanlamchung
         {
             try
             {
-                // Sử dụng Nav.Back nếu đã cài Nav helper (giữ lịch sử)
+                // S? d?ng Nav.Back n?u d� c�i Nav helper (gi? l?ch s?)
                 Nav.Back(this);
             }
             catch
             {
-                // Fallback: mở Dashboard mới nếu không có lịch sử
+                // Fallback: m? Dashboard m?i n?u kh�ng c� l?ch s?
                 try
                 {
                     var dash = new DashboardLeTan();
@@ -395,9 +395,28 @@ namespace Duanlamchung
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể quay lại: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Khong the quay lai: " + ex.Message, "Loi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        // ================= WINDOW CONTROLS =================
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                try { DragMove(); } catch { }
+            }
+        }
+
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
